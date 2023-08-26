@@ -1,19 +1,20 @@
 <template>
-  <div class="flex items-center justify-between h-7 font-serif">
-    <span class="p-2" v-if="title.toUpperCase() !== 'CUSTOMER'">
-      {{ title }} :
-    </span>
-    <span v-else :class="['mr-4', 'border-solid', 'border-2', 'border-indigo-600', 'rounded']">
-      <input type="text" class="bg-slate-100 rounded px-2 focus:outline-none focus:ring focus:border-blue-500"
-        placeholder="Anything " />
-    </span>
+  <div class="flex items-center justify-between h-8 font-serif">
+    <label class="p-2 text-2xl w-96 block text-right">
+      <span v-if="title.toUpperCase() !== 'CUSTOMER'" >
+        {{ title }}
+      </span>
+      <input v-else type="text" :class="['flex-none', 'input-gender', 'bg-slate-100', 'rounded', 'px-2', 'focus:outline-none', 'focus:ring',
+        'focus:border-blue-500', 'rounded']" placeholder="Anything " /> :
+    </label>
+
     <input type="range" min="0" max="100" value="0" :class="[
-      'w-64',
+      'w-full',
       'h-2',
       'rounded-full',
       'bg-gradient-to-r',
       'from-slate-100',
-      'to-violet-500',
+      `to-${mainColor}-500`,
     ]" @change="valueChange" />
   </div>
 </template>
@@ -33,11 +34,6 @@ defineProps({
     default: "gray-300",
   },
 });
-// console.log(props);
-
-
-// const fromColor = `from-${props.subColor}`;
-// const toColor = `to-${props.mainColor}`;
 
 const emit = defineEmits<{
   change: [value: number]; // named tuple syntax
@@ -54,21 +50,10 @@ const valueChange = function (changeEvent: Event) {
 </script>
 
 <style lang="scss" scoped>
-/* Customize the range slider track */
-input[type="range"] {
-  -webkit-appearance: none;
-  outline: none;
-}
-
-/* Customize the range slider thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  border-radius: 50%;
-  border: 4px solid #ff0000;
+.input-gender {
+  display: inline-block;
+  width: 10rem;
+  flex: 1;
+  border-bottom: 2px solid rgb(111, 111, 111);
 }
 </style>
