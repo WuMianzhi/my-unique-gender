@@ -54,7 +54,7 @@ const genderExpression = {
 };
 
 const sexualIdentity = {
-  title: "Sexual Identity",
+  title: "性向认同",
   category: ["Queer", "Bisexual", "Gay/Lesbian", "Straight", "Customer"],
   mainColor: 'lime'
 };
