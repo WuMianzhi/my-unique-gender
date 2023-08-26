@@ -1,6 +1,15 @@
 <template>
-  <div class="flex items-center justify-between">
-    <span class="p-2">{{ title }} : </span>
+  <div class="flex items-center justify-between h-7 font-serif">
+    <span class="p-2" v-if="title.toUpperCase() !== 'CUSTOMER'">
+      {{ title }} :
+    </span>
+    <span v-else :class="['mr-4', 'border-solid', 'border-2', 'border-indigo-600', 'rounded']">
+      <input
+        type="text"
+        class="bg-slate-100 rounded px-2 focus:outline-none focus:ring focus:border-blue-500"
+        placeholder="Anything "
+      />
+    </span>
     <input
       type="range"
       min="0"
@@ -11,8 +20,8 @@
         'h-2',
         'rounded-full',
         'bg-gradient-to-r',
-        fromColor,
-        toColor,
+        'from-slate-100',
+        'to-violet-500',
       ]"
       @change="valueChange"
     />
@@ -27,7 +36,7 @@ const props = defineProps({
   },
   mainColor: {
     type: String,
-    default: "red-500",
+    default: "violet-500",
   },
   subColor: {
     type: String,
@@ -35,8 +44,8 @@ const props = defineProps({
   },
 });
 
-const fromColor = `from-${props.subColor}`;
-const toColor = `to-${props.mainColor}`;
+// const fromColor = `from-${props.subColor}`;
+// const toColor = `to-${props.mainColor}`;
 
 const emit = defineEmits<{
   change: [value: number]; // named tuple syntax
