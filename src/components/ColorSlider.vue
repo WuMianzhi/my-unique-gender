@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between h-8 font-serif">
+  <div class="flex items-center justify-between h-8 p-8 sm:p-0 font-serif">
     <label class="p-2 text-2xl w-96 block text-right">
       <span v-if="title.toUpperCase() !== 'CUSTOMER'" >
         {{ title }}
