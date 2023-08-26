@@ -42,14 +42,14 @@ import IdentityGroupVue from "../components/IdentityGroup.vue";
 
 
 const genderIdentity = {
-  title: " 性别认同",
-  category: ["Non-Binary", "Transgender", "Woman/Girl", "Man/Boy", "Customer"],
+  title: "性别认同",
+  category: ["非二元", "跨性别", "女性", "男性", "Customer"],
   mainColor: 'green'
 };
 
 const genderExpression = {
-  title: " Gender Expression",
-  category: ["Nature/Undefined", "Feminine", "Masculine"],
+  title: "性别表达",
+  category: ["Nature/Undefined", "女性化", "男性化"],
   mainColor: 'teal'
 };
 
@@ -60,27 +60,27 @@ const sexualIdentity = {
 };
 
 const physicallyAttractedTo = {
-  title: "Physically Attracted To",
+  title: "生理性吸引",
   category: [
-    "No one",
-    "Non-Binary People",
-    "Trans Men",
-    "Trans Women",
-    "Cisgender Women",
-    "Cisgender Men",
+    "无性吸引",
+    "非二元性别",
+    "跨性别女性",
+    "跨性别男性",
+    "顺性别女性",
+    "顺性别男性",
   ],
   mainColor: 'orange'
 };
 
 const emotionallyAttractedTo = {
-  title: "Emotionally Attracted To",
+  title: "浪漫吸引",
   category: [
-    "No one",
-    "Non-Binary People",
-    "Trans Men",
-    "Trans Women",
-    "Cisgender Women",
-    "Cisgender Men",
+    "无浪漫吸引",
+    "非二元性别",
+    "跨性别女性",
+    "跨性别男性",
+    "顺性别女性",
+    "顺性别男性",
   ],
   mainColor: 'rose'
 };
