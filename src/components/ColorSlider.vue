@@ -4,32 +4,22 @@
       {{ title }} :
     </span>
     <span v-else :class="['mr-4', 'border-solid', 'border-2', 'border-indigo-600', 'rounded']">
-      <input
-        type="text"
-        class="bg-slate-100 rounded px-2 focus:outline-none focus:ring focus:border-blue-500"
-        placeholder="Anything "
-      />
+      <input type="text" class="bg-slate-100 rounded px-2 focus:outline-none focus:ring focus:border-blue-500"
+        placeholder="Anything " />
     </span>
-    <input
-      type="range"
-      min="0"
-      max="100"
-      value="0"
-      :class="[
-        'w-64',
-        'h-2',
-        'rounded-full',
-        'bg-gradient-to-r',
-        'from-slate-100',
-        'to-violet-500',
-      ]"
-      @change="valueChange"
-    />
+    <input type="range" min="0" max="100" value="0" :class="[
+      'w-64',
+      'h-2',
+      'rounded-full',
+      'bg-gradient-to-r',
+      'from-slate-100',
+      'to-violet-500',
+    ]" @change="valueChange" />
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: "testTitle",
@@ -43,7 +33,7 @@ const props = defineProps({
     default: "gray-300",
   },
 });
-console.log(props);
+// console.log(props);
 
 
 // const fromColor = `from-${props.subColor}`;
