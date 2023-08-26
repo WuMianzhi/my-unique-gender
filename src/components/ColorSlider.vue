@@ -43,6 +43,8 @@ const props = defineProps({
     default: "gray-300",
   },
 });
+console.log(props);
+
 
 // const fromColor = `from-${props.subColor}`;
 // const toColor = `to-${props.mainColor}`;
