@@ -1,11 +1,15 @@
 <template>
-  <div>
-    <h2 class="text-3xl text-left mb-4">
+  <div class="
+            bg-white p-12 rounded-md shadow-sm
+            md:bg-white md:p-12 md:rounded-md md:shadow-md
+              sm:bg-white sm:p-12 sm:rounded-md sm:shadow-md
+              lg:bg-transparent lg:p-0 lg:shadow-none">
+    <h2 class="text-3xl text-center lg:text-left mb-4">
       <a href="#" :class="['font-semibold', `text-blue-500`]"> &#x1F308 Genitals(At Birth)
       </a>
     </h2>
     <div>
-      <div class="flex justify-between font-serif text-base">
+      <div class="flex justify-between font-serif lg:text-base">
         <span>Vagina</span>
         <span>Undifferentiated</span>
         <span>Penis</span>
@@ -27,21 +31,4 @@
 
 </script>
 
-<style lang="scss" scoped>
-input[type="range"] {
-  -webkit-appearance: none;
-  outline: none;
-}
-
-/* Customize the range slider thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 1.6rem;
-  height: 1.6rem;
-  background: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  border-radius: 50%;
-  border: 4px solid #848484;
-}
-</style>
+<style lang="scss" scoped></style>
