@@ -17,13 +17,13 @@
         'bg-gradient-to-r',
         'from-pink-500',
         `to-blue-500`,
-      ]" @change="valueChange" />
+      ]" />
     </div>
 
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 </script>
 
