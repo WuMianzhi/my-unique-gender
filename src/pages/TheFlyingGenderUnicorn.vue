@@ -42,7 +42,7 @@ import IdentityGroupVue from "../components/IdentityGroup.vue";
 
 
 const genderIdentity = {
-  title: " Gender Identity",
+  title: " 性别认同",
   category: ["Non-Binary", "Transgender", "Woman/Girl", "Man/Boy", "Customer"],
   mainColor: 'green'
 };
