@@ -1,32 +1,27 @@
 <template>
   <div class="bg-sky-50 rounded-xl shadow-xl md:p-24 ">
     <h1 class="text-left font-bold pb-8 pt-12 rainbow-text md:text-center">The Flying Gender Unicorn</h1>
-    <div class="grid items-stretch divide-y-4
-                sm:gap-x-32 sm:gap-y-16 
+    <div class="grid items-stretch divide-y-4 
+                sm:gap-x-32 sm:gap-y-16 sm:divide-y-0
                 md:gap-x-32 md:gap-y-32 
                 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-4
                 ">
-      <div class="bg-red-100 lg:row-span-5 ">
+      <div class="bg-red-100 lg:row-span-3 ">
         Unicorn
       </div>
       <IdentityGroupVue :groupTitle="genderIdentity.title" :category="genderIdentity.category"
         :mainColor="genderIdentity.mainColor" />
       <GenitalsVue />
 
-      <div class="hidden sm:hidden md:hidden lg:block divide-line "></div>
-      <div class="hidden sm:hidden md:hidden lg:block divide-line "></div>
 
       <IdentityGroupVue :groupTitle="genderExpression.title" :category="genderExpression.category"
         :mainColor="genderExpression.mainColor" />
       <HormoneLevelsVue />
 
-      <div class="hidden sm:hidden md:hidden lg:block divide-line "></div>
-      <div class="hidden sm:hidden  md:hidden lg:block divide-line  "></div>
 
       <GenderAssignedAtBirthVue />
       <ChromosomesVue />
 
-      <div class="hidden sm:hidden md:hidden lg:block lg:col-span-3 divide-line "></div>
 
       <IdentityGroupVue :groupTitle="sexualIdentity.title" :category="sexualIdentity.category"
         :mainColor="sexualIdentity.mainColor" />
