@@ -4,7 +4,7 @@
               sm:bg-white sm:p-12 sm:rounded-md sm:shadow-md
               lg:bg-slate-50 lg:p-6 lg:shadow-lg">
     <h2 class="text-3xl text-center lg:text-left mb-4">
-      <a href="#" :class="['font-semibold', `text-fuchsia-500`]"> &#x1F308 Hormone Levels(Vary Over Time)
+      <a href="#" :class="['font-semibold', `text-fuchsia-500`]"> &#x1F308 性激素水平（可随时间变化）
       </a>
     </h2>
     <div class="flex justify-between font-serif gap-8 ">
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-const hormones = ['Estrogen', 'Testosterone', 'Progesterone']
+const hormones = ['雌激素', '雄激素/睾酮', '孕激素']
 </script>
 
 <style lang="scss" scoped></style>

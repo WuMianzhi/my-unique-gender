@@ -5,14 +5,14 @@
               sm:bg-white sm:p-12 sm:rounded-md sm:shadow-md
               lg:bg-slate-50 lg:p-6 lg:shadow-lg">
     <h2 class="text-3xl text-center lg:text-left mb-4">
-      <a href="#" :class="['font-semibold', `text-blue-500`]"> &#x1F308 Genitals(At Birth)
+      <a href="#" :class="['font-semibold', `text-blue-500`]"> &#x1F308 外生殖器形态
       </a>
     </h2>
     <div>
       <div class="flex justify-between font-serif lg:text-base">
-        <span>Vagina</span>
-        <span>Undifferentiated</span>
-        <span>Penis</span>
+        <span>阴道</span>
+        <span>未分化</span>
+        <span>阴茎</span>
       </div>
       <input type="range" min="0" max="100" value="0" :class="[
         'w-full',
