@@ -69,10 +69,10 @@ const sexualIdentity = {
 };
 
 const physicallyAttractedTo = {
-  title: "生理性吸引",
+  title: "生理上的吸引",
   category: [
     "无性吸引",
-    "非二元性别",
+    "非二元性别者",
     "跨性别女性",
     "跨性别男性",
     "顺性别女性",
@@ -82,10 +82,10 @@ const physicallyAttractedTo = {
 };
 
 const emotionallyAttractedTo = {
-  title: "浪漫吸引",
+  title: "亲密关系上的吸引",
   category: [
-    "无浪漫吸引",
-    "非二元性别",
+    "无情感吸引",
+    "非二元性别者",
     "跨性别女性",
     "跨性别男性",
     "顺性别女性",
