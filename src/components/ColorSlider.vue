@@ -1,21 +1,43 @@
 <template>
   <div class="flex items-center justify-between h-8 p-8 sm:p-0 font-serif">
     <label class="p-2 text-2xl w-96 block text-right">
-      <span v-if="title.toUpperCase() !== 'CUSTOMER'" >
+      <span v-if="title.toUpperCase() !== 'CUSTOMER'">
         {{ title }}
       </span>
-      <input v-else type="text" :class="['flex-none', 'input-gender', 'bg-slate-100', 'rounded', 'px-2', 'focus:outline-none', 'focus:ring',
-        'focus:border-blue-500', 'rounded']" placeholder="Anything " /> :
+      <input
+        v-else
+        type="text"
+        :class="[
+          'flex-none',
+          'input-gender',
+          'bg-slate-100',
+          'rounded',
+          'px-2',
+          'focus:outline-none',
+          'focus:ring',
+          'focus:border-blue-500',
+          'rounded',
+        ]"
+        placeholder="自定义"
+      />
+      :
     </label>
 
-    <input type="range" min="0" max="100" value="0" :class="[
-      'w-full',
-      'h-2',
-      'rounded-full',
-      'bg-gradient-to-r',
-      'from-slate-100',
-      `to-${mainColor}-500`,
-    ]" @change="valueChange" />
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="0"
+      :class="[
+        'w-full',
+        'h-2',
+        'rounded-full',
+        'bg-gradient-to-r',
+        'from-slate-100',
+        `to-${mainColor}-500`,
+      ]"
+      @change="valueChange"
+    />
   </div>
 </template>
 
