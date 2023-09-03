@@ -1,5 +1,6 @@
 <template>
   <div class="
+  card
             bg-white p-12 rounded-md shadow-sm
             md:bg-white md:p-12 md:rounded-md md:shadow-md
               sm:bg-white sm:p-12 sm:rounded-md sm:shadow-md

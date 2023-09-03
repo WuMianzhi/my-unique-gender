@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center justify-between h-8 p-8 sm:p-0 font-serif">
-    <label class="p-2 text-2xl w-96 block text-right">
+  <div class="flex items-center justify-between h-8 py-6 sm:p-0">
+    <label class="pr-4 text-xl w-64 block text-right sm:w-auto  ">
       <span v-if="title.toUpperCase() !== 'CUSTOMER'">
         {{ title }}
       </span>
@@ -74,8 +74,10 @@ const valueChange = function (changeEvent: Event) {
 <style lang="scss" scoped>
 .input-gender {
   display: inline-block;
-  width: 10rem;
+  width: 8rem;
   flex: 1;
   border-bottom: 2px solid rgb(111, 111, 111);
 }
+
+
 </style>

@@ -6,7 +6,26 @@
 import TheFlyingGenderUnicorn from "./pages/TheFlyingGenderUnicorn.vue";
 </script>
 
-<style >
+<style lang="scss" >
+.card {
+  position: relative;
+  overflow: hidden;
+  margin: 1rem 0;
+
+  &:before {
+    position: absolute;
+    top: -10rem;
+    left: -1rem;
+    content: '“';
+    font-size: 24rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    opacity: 0.2;
+    z-index: 1;
+    // @apply text-lime-500
+    // @apply text-xl
+  }
+}
+
 .text-slate {
   @apply text-slate-500
 }

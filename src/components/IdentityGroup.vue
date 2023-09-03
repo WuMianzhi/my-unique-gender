@@ -1,13 +1,13 @@
 <template>
-  <div class="grid bg-white p-12 rounded-md shadow-sm
+  <div class="card grid bg-white p-6 rounded-2xl my-8 shadow-sm
             sm:bg-white sm:p-12 sm:rounded-md sm:shadow-md
             md:bg-white md:p-12 md:rounded-lg md:shadow-lg
               lg:bg-slate-50 lg:p-6 lg:shadow-lg                   ">
-    <h2 class="md:text-center md:text-4xl lg:text-3xl lg:text-left  mb-4 "> <a href="#"
+    <h2 class=" text-3xl pb-4 z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left mb-4 "> <a href="#"
         :class="['font-semibold', `text-${mainColor}-500`]"> &#x1F308 {{
           groupTitle }}
       </a></h2>
-    <div class="flex flex-col justify-between gap-y-1">
+    <div class="flex flex-col z-10 justify-between gap-y-1">
       <template v-for="identity in category">
         <ColorSlider :title="identity" @change="changeListener" :main-color="mainColor" />
       </template>
@@ -35,4 +35,6 @@ const changeListener = function (change: number) {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+
+</style>
