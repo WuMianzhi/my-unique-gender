@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-between h-8 py-6 sm:p-0">
-    <label class="pr-4 text-xl w-64 block text-right sm:w-auto  ">
+    <label class="pr-4 w-72 block text-right sm:w-auto  ">
       <span v-if="title.toUpperCase() !== 'CUSTOMER'">
         {{ title }}
       </span>

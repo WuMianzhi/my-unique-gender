@@ -3,8 +3,8 @@
   md:bg-white md:p-12 md:rounded-md md:shadow-md 
               sm:bg-white sm:p-12 sm:rounded-md sm:shadow-md
               lg:bg-slate-50 lg:p-6 lg:shadow-lg">
-    <h2 class="text-3xl mb-4 text-center lg:text-left">
-      <a href="#" :class="['font-semibold',]"> &#x1F308 性染色体
+    <h2 class="text-4xl pb-6 z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left mb-4 ">
+      <a href="#" :class="['font-semibold', 'text-violet']">性染色体
       </a>
     </h2>
     <div class="flex justify-between font-serif">

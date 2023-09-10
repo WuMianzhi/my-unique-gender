@@ -1,12 +1,13 @@
 <template>
-  <div class="card grid bg-white p-6 rounded-2xl my-8 shadow-sm
+  <div class="card grid bg-white px-6 py-10 rounded-2xl my-8 shadow-sm
             sm:bg-white sm:p-12 sm:rounded-md sm:shadow-md
             md:bg-white md:p-12 md:rounded-lg md:shadow-lg
-              lg:bg-slate-50 lg:p-6 lg:shadow-lg                   ">
-    <h2 class=" text-3xl pb-4 z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left mb-4 "> <a href="#"
-        :class="['font-semibold', `text-${mainColor}-500`]"> &#x1F308 {{
-          groupTitle }}
-      </a></h2>
+              lg:bg-slate-50 lg:p-6 lg:shadow-lg">
+    <h2 class="text-4xl pb-6 z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left ">
+      <a href="#" :class="['font-semibold', `text-${mainColor}`, 'transparent-text']">
+        {{ groupTitle }}
+      </a>
+    </h2>
     <div class="flex flex-col z-10 justify-between gap-y-1">
       <template v-for="identity in category">
         <ColorSlider :title="identity" @change="changeListener" :main-color="mainColor" />
