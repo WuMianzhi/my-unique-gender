@@ -7,30 +7,30 @@
       <a href="#" :class="['font-semibold', 'text-violet']">性染色体
       </a>
     </h2>
-    <div class="flex justify-between font-serif">
-      <div class="grid cursor-pointer">
-        <label for="femaleChromosomes">女性</label>
-        <label for="femaleChromosomes" class="text-4xl italic cursor-pointer">XX</label>
+    <div class="flex justify-between px-6 ">
+
+      <div class="grid gap-2 cursor-pointer" v-for="chromosomes in chromosomesCate">
+        <label for="femaleChromosomes">{{ chromosomes.name }}</label>
+        <label for="femaleChromosomes" class="text-4xl italic font-serif cursor-pointer">{{ chromosomes.chromosome
+        }}</label>
         <input name="Chromosomes" id="femaleChromosomes" type="radio">
-      </div>
-
-      <div class="grid cursor-pointer">
-        <label for="interSexChromosomes">间性</label>
-        <label for="interSexChromosomes" class="text-2xl italic cursor-pointer"><span class="text-4xl">XXY</span> <span
-            class="text-4xl">XYY</span></label>
-        <input name="Chromosomes" id="interSexChromosomes" type="radio">
-      </div>
-
-      <div class="grid cursor-pointer">
-        <label for="maleChromosomes">男性</label>
-        <label for="maleChromosomes" class="text-4xl italic cursor-pointer">XY</label>
-        <input name="Chromosomes" id="maleChromosomes" type="radio">
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+
+const chromosomesCate = [{
+  name: '女性',
+  chromosome: 'XX',
+}, {
+  name: '间性',
+  chromosome: 'XYY',
+}, {
+  name: '男性',
+  chromosome: 'XY',
+}]
 
 </script>
 

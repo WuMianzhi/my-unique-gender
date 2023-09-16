@@ -14,6 +14,7 @@ import TheFlyingGenderUnicorn from "./pages/TheFlyingGenderUnicorn.vue";
   color: #222222;
   box-shadow: 4px 4px 8px -4px #7b7b7b97;
   border-radius: 1rem;
+  font-size: 1.6rem;
 
   // &:before {
   //   content: '';

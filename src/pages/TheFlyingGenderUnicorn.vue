@@ -7,26 +7,40 @@
       class="grid items-stretch divide-y-4 sm:gap-x-32 sm:gap-y-16 sm:divide-y-0 md:gap-x-32 md:gap-y-32 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-4">
       <div class="bg-red-100 lg:row-span-3">Unicorn</div>
 
-      <IdentityGroupVue :groupTitle="genderIdentity.title" :category="genderIdentity.category"
-        :mainColor="genderIdentity.mainColor" />
+      <!-- 性别认同 / 性别身份 -->
+      <IdentityCardComponent :groupTitle="genderIdentity.title" :category="genderIdentity.category"
+        :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" />
 
+      <!-- 外生殖器形态 -->
       <GenitalsVue />
 
-      <IdentityGroupVue :groupTitle="genderExpression.title" :category="genderExpression.category"
-        :mainColor="genderExpression.mainColor" />
+      <!-- 性别表达气质 -->
+      <IdentityCardComponent :groupTitle="genderExpression.title" :category="genderExpression.category"
+        :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" />
 
+      <!-- 性激素水平 -->
       <HormoneLevelsVue />
 
+      <!-- 出生指派性别 -->
       <GenderAssignedAtBirthVue />
-      
+
+      <!-- 性染色体 -->
       <ChromosomesVue />
 
-      <IdentityGroupVue :groupTitle="sexualIdentity.title" :category="sexualIdentity.category"
-        :mainColor="sexualIdentity.mainColor" />
-      <IdentityGroupVue :groupTitle="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
-        :mainColor="physicallyAttractedTo.mainColor" />
-      <IdentityGroupVue :groupTitle="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
-        :mainColor="emotionallyAttractedTo.mainColor" />
+      <!-- 性 / 情欲倾向的认同 / 身份 -->
+      <IdentityCardComponent :groupTitle="sexualIdentity.title" :category="sexualIdentity.category"
+        :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" />
+
+      <!-- 生理上的吸引 -->
+      <IdentityCardComponent :groupTitle="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
+        :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom" />
+
+      <!-- 亲密关系上的吸引 -->
+      <IdentityCardComponent :groupTitle="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
+        :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom" />
+
+
+
     </div>
   </div>
 </template>
@@ -36,24 +50,28 @@ import ChromosomesVue from "../components/Chromosomes.vue";
 import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
 import GenitalsVue from "../components/Genitals.vue";
 import HormoneLevelsVue from "../components/HormoneLevels.vue";
-import IdentityGroupVue from "../components/IdentityGroup.vue";
+import IdentityCardComponent from "../components/IdentityCardComponent.vue";
+
 
 const genderIdentity = {
   title: "性别认同/性别身份",
-  category: ["非二元性别", "跨性别", "女性", "男性", "Customer"],
+  category: ["非二元性别", "跨性别", "女性", "男性"],
   mainColor: "red",
+  hasCustom: true
 };
 
 const genderExpression = {
   title: "性别表达/性别气质",
   category: ["中性/未定义", "阴柔/女性化", "阳刚/男性化"],
   mainColor: "emerald",
+  hasCustom: false
 };
 
 const sexualIdentity = {
   title: "性/情欲倾向的认同/身份",
   category: ["酷儿", "双性恋", "同性恋", "异性恋", "Customer"],
   mainColor: "fuchsia",
+  hasCustom: true
 };
 
 const physicallyAttractedTo = {
@@ -67,6 +85,7 @@ const physicallyAttractedTo = {
     "顺性别男性",
   ],
   mainColor: "pink",
+  hasCustom: false
 };
 
 const emotionallyAttractedTo = {
@@ -80,6 +99,7 @@ const emotionallyAttractedTo = {
     "顺性别男性",
   ],
   mainColor: "rose",
+  hasCustom: false
 };
 </script>
 

@@ -7,9 +7,9 @@
       <a href="#" :class="['font-semibold', `text-blue`]"> 性激素水平（可随时间变化）
       </a>
     </h2>
-    <div class="flex justify-between font-serif gap-8 ">
+    <div class="flex justify-between gap-8 ">
       <div class="grid" v-for="hormone in hormones">
-        <span class="lg:text-base mb-4">{{ hormone }}</span>
+        <span class="mb-4">{{ hormone }}</span>
         <input name="genderAssign" type="range" :class="[
           'w-full',
           'h-2',

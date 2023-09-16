@@ -7,7 +7,7 @@
       <a href="#" :class="['font-semibold', `text-indigo` ]"> 出生指派性别
       </a>
     </h2>
-    <div class="flex justify-between font-serif">
+    <div class="flex justify-between">
       <div class="grid cursor-pointer " v-for="gender in genderAssign">
         <label :for="gender + 'Assign'" class="label">{{ gender }}</label>
         <input :id="gender + 'Assign'" name="genderAssign" type="radio">
