@@ -10,7 +10,7 @@
     </h2>
 
     <div class="identify-card-body">
-      <template v-for="identity in category">
+      <template v-for="(identity, index) in category" :key="index">
         <label class="identify-card__label">
           <span>
             {{ identity }}
@@ -18,7 +18,7 @@
           :
         </label>
 
-        <input type="range" min="0" max="100" value="0" :class="[
+        <input type="range" min=0 max=100 v-model.number="colorVal[index]" @change="valueChange" :class="[
           'w-full',
           'h-2',
           'rounded-full',
@@ -56,8 +56,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch, Ref } from 'vue';
 
-defineProps({
+const props = defineProps({
   groupTitle: {
     type: String,
     default: "testTitle",
@@ -75,6 +76,24 @@ defineProps({
   }
 });
 
+const colorVal: Ref<number[]> = ref(Array(props.category?.length).fill(0))
+
+const emit = defineEmits<{
+  selfChange: [value: number[]]; // named tuple syntax
+}>();
+
+
+// 监听items的变化
+watch(colorVal, (newItems, oldItems) => {
+  console.log('Items changed:', newItems, oldItems);
+  emit("selfChange", colorVal.value);
+});
+
+const valueChange = function () {
+  console.log(colorVal.value);
+  
+  emit("selfChange", colorVal.value);
+};
 
 </script>
 
