@@ -37,6 +37,7 @@
           </svg>
         </div>
 
+        
         <!-- 捕获并下载的按钮 -->
         <button @click="captureAndDownload">Capture and Download</button>
 
