@@ -2,7 +2,7 @@ export type RGBColorArray = [number, number, number];
 
 export interface GenderCate {
   name: string;
-  colorSeries: [RGBColorArray, RGBColorArray];
+  colorSeries: [string, string];
   value: number;
 }
 

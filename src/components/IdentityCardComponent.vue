@@ -21,7 +21,7 @@
             <div class="flex-1 flex justify-between ">
               <template v-for="i in 20" :key="i">
                 <button @click="modVal(index, i * 5)"
-                  :style="{ 'background-color': calInterColor(identity.colorSeries[0], identity.colorSeries[1], i) }"
+                  :style="{ 'background-color': calInterColorByHex(identity.colorSeries[0], identity.colorSeries[1], i) }"
                   :class="[' h-4 p-0 b-0 bg-gray-900 step-btn transition-all', i * 5 == identity.value ? 'relative bottom-2' : '']"></button>
               </template>
             </div>
@@ -85,11 +85,20 @@ const modValByParam = (index: number, param: number) => {
   emit("selfChange", index, param);
 };
 
-const calInterColor = (sColor: [number, number, number], eColor: [number, number, number], step: number, all = 20) => {
-  const rGap = sColor[0] - eColor[0], gGap = sColor[1] - eColor[1], bGap = sColor[2] - eColor[2]
-  const rgb = [sColor[0] - Math.ceil((step / all) * rGap), sColor[1] - Math.ceil((step / all)) * gGap, sColor[2] - Math.ceil((step / all) * bGap)]
+const calInterColorByHex = (sColor: string, eColor: string, step: number, all = 20) => {
+  const sRGB = hex2RGB(sColor);
+  const eRGB = hex2RGB(eColor);
+  const colorGap = sRGB.map((v, i) => eRGB[i] - v)
+  const result = sRGB.map((v, i) => v + Math.ceil(colorGap[i] * (step / all)))
 
-  return `rgb(${rgb.join(',')})`
+  return `rgb(${result.join(',')})`
+}
+
+
+const hex2RGB = (hex: string) => {
+  return [parseInt(hex.substring(0, 2), 16),
+  parseInt(hex.substring(2, 4), 16),
+  parseInt(hex.substring(4, 6), 16)]
 }
 
 </script>

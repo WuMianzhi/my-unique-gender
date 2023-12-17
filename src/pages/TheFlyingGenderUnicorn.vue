@@ -32,8 +32,9 @@
       <!-- <GenitalsVue /> -->
 
       <!-- 性别表达气质 -->
-      <!-- <IdentityCardComponent :groupTitle="genderExpression.title" :category="genderExpression.category"
-        :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" /> -->
+      <IdentityCardComponent :title="genderExpression.title" :category="genderExpression.category"
+        :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" @selfChange="updateGexByMod"
+        @update-val="updateGex" />
 
       <!-- 性激素水平 -->
       <!-- <HormoneLevelsVue /> -->
@@ -69,31 +70,53 @@
 // import GenitalsVue from "../components/Genitals.vue";
 // import HormoneLevelsVue from "../components/HormoneLevels.vue";
 import IdentityCardComponent from "../components/IdentityCardComponent.vue";
-import { ref, reactive } from "vue";
-import { GenderGroup } from '../types/index'
+import { ref } from "vue";
+import { genderIdentity } from './genderGroup/GId'
+import { genderExpression } from './genderGroup/GEx'
+import { GenderGroup } from "../types/index";
 
-const genderIdentity: GenderGroup = reactive({
-  title: "性别认同/性别身份",
-  category: [{
-    name: "非二元性别",
-    colorSeries: [[255, 146, 146], [255, 214, 167]],
-    value: 50
-  }, {
-    name: "跨性别",
-    colorSeries: [[255, 214, 167], [255, 251, 143]],
-    value: 50
-  }, {
-    name: "女性",
-    colorSeries: [[255, 251, 143], [201, 255, 175]],
-    value: 50
-  }, {
-    name: "男性",
-    colorSeries: [[201, 255, 175], [144, 248, 255]],
-    value: 50
-  }],
-  mainColor: "red",
-  hasCustom: true
-});
+const updateVal = (index: number, val: number, ds: GenderGroup) => {
+  ds.category[index].value = val
+}
+
+const updateValByMod = (index: number, mod: number, ds: GenderGroup) => {
+  ds.category[index].value += mod
+}
+
+const updateGex = (index: number, val: number) => {
+  updateVal(index, val, genderExpression)
+}
+
+const updateGexByMod = (index: number, val: number) => {
+  updateValByMod(index, val, genderExpression)
+}
+
+// const genderIdentity: GenderGroup = reactive({
+//   title: "性别认同/性别身份",
+//   category: [{
+//     name: "非二元性别",
+//     colorSeries: ['ff9292', 'ffd6a7'],
+//     value: 50
+//   }, {
+//     name: "跨性别",
+//     colorSeries: ['ffd6a7', 'fffb8f'],
+//     value: 50
+//   }, {
+//     name: "女性",
+//     colorSeries: ['fffb8f', 'c9ffaf'],
+//     value: 50
+//   }, {
+//     name: "男性",
+//     colorSeries: ['c9ffaf', '90f8ff'],
+//     value: 50
+//   }, {
+//     name: "自定义",
+//     colorSeries: ['90f8ff', '9390ff'],
+//     value: 50
+//   }],
+//   mainColor: "red",
+//   hasCustom: false
+// });
 
 const updateGId = (index: number, val: number) => {
   genderIdentity.category[index].value = val
@@ -102,12 +125,7 @@ const updateGId = (index: number, val: number) => {
 const updateGIdByMod = (index: number, param: number) => {
   genderIdentity.category[index].value += param
 }
-// const genderExpression = {
-//   title: "性别表达/性别气质",
-//   category: ["中性/未定义", "阴柔/女性化", "阳刚/男性化"],
-//   mainColor: "emerald",
-//   hasCustom: false
-// };
+
 
 // const sexualIdentity = {
 //   title: "性/情欲倾向的认同/身份",
