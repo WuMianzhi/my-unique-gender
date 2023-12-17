@@ -1,38 +1,39 @@
 <template>
-  <div class="identify-card card grid bg-white px-6 py-10 rounded-2xl 
-            sm:bg-white  sm:rounded-lg
+  <div class="identify-card card grid bg-white px-6 py-10 
+
             md:bg-white md:p-12 md:rounded-lg md:shadow-lg
               lg:bg-slate-50 lg:p-6 lg:shadow-lg">
     <h2 class="text-4xl pb-6 z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left question-title">
       <a href="#" :class="['question-title']">
-        {{ groupTitle }}
+        {{ title }}
       </a>
     </h2>
 
     <div class="identify-card-body">
       <template v-for="(identity, index) in category" :key="index">
         <div class="w-full">
-          <div class="flex items-center gap-8">
-            <button class="linear-bg-btn">
-              -
+          <div class="w-full flex items-center gap-2 ">
+            <!-- 减少一级 -->
+            <button class="linear-bg-btn m-0 p-0 bg-transparent" @click="modValByParam(index, -5)">
+              <img src="../assets/minus.png" class="w-8 h-8" alt="减少" srcset="">
             </button>
-            <input type="range" min=0 max=100 v-model.number="colorVal[index]" @change="valueChange" :class="[
-              'w-full',
-              'h-2',
-              'rounded-full',
-              'bg-gradient-to-r',
-              'from-slate-100',
-              `to-${mainColor}-500`,
-            ]" />
-            <button class="linear-bg-btn">
-              +
+            <!-- 中间的按钮 -->
+            <div class="flex-1 flex justify-between ">
+              <template v-for="i in 20" :key="i">
+                <button @click="modVal(index, i * 5)"
+                  :style="{ 'background-color': calInterColor(identity.colorSeries[0], identity.colorSeries[1], i) }"
+                  :class="[' h-4 p-0 b-0 bg-gray-900 step-btn transition-all', i * 5 == identity.value ? 'relative bottom-2' : '']"></button>
+              </template>
+            </div>
+            <!--  添加一级 -->
+            <button class="linear-bg-btn m-0 p-0 bg-transparent" @click="modValByParam(index, 5)">
+              <img src="../assets/plus.png" alt="减少" srcset="" class="w-8 h-8">
             </button>
           </div>
 
-
-          <div class="">
-            <label class="identify-card__label text-center">
-              {{ identity }}
+          <div class="p-0 m-0 h-4 flex items-center justify-around align-baseline relative bottom-1">
+            <label class="identify-card__label text-center ">
+              {{ identity.name }}
             </label>
           </div>
         </div>
@@ -66,51 +67,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, Ref } from 'vue';
+// import { ref, watch, Ref } from 'vue';
+import { GenderGroup } from '../types';
 
-const props = defineProps({
-  groupTitle: {
-    type: String,
-    default: "testTitle",
-  },
-  category: {
-    type: Array<string>,
-  },
-  mainColor: {
-    type: String,
-    default: 'red'
-  },
-  hasCustom: {
-    type: Boolean,
-    default: false
-  }
-});
-
-const colorVal: Ref<number[]> = ref(Array(props.category?.length).fill(0))
+defineProps<GenderGroup>();
 
 const emit = defineEmits<{
-  selfChange: [value: number[]]; // named tuple syntax
+  selfChange: [index: number, value: number];
+  updateVal: [index: number, value: number];
 }>();
 
+const modVal = (index: number, newVal: number) => {
+  emit('updateVal', index, newVal)
+}
 
-// 监听items的变化
-watch(colorVal, (newItems, oldItems) => {
-  console.log('Items changed:', newItems, oldItems);
-  emit("selfChange", colorVal.value);
-});
-
-const valueChange = function () {
-  console.log(colorVal.value);
-
-  emit("selfChange", colorVal.value);
+const modValByParam = (index: number, param: number) => {
+  emit("selfChange", index, param);
 };
+
+const calInterColor = (sColor: [number, number, number], eColor: [number, number, number], step: number, all = 20) => {
+  const rGap = sColor[0] - eColor[0], gGap = sColor[1] - eColor[1], bGap = sColor[2] - eColor[2]
+  const rgb = [sColor[0] - Math.ceil((step / all) * rGap), sColor[1] - Math.ceil((step / all)) * gGap, sColor[2] - Math.ceil((step / all) * bGap)]
+
+  return `rgb(${rgb.join(',')})`
+}
 
 </script>
 
 <style lang="scss" scoped>
 .identify-card {
-  background: linear-gradient(123.84deg, rgba(229, 229, 229, 0.2) 0.32%, rgba(205, 213, 224, 0.2) 32.08%, rgba(205, 213, 224, 0.2) 60.87%, rgba(255, 255, 255, 0.2) 95.61%),
-    linear-gradient(160.61deg, rgba(255, 255, 255, 0.48) 13.02%, rgba(255, 255, 255, 0.4) 55.88%, rgba(255, 255, 255, 0) 99.64%);
+  // background: linear-gradient(123.84deg, rgba(229, 229, 229, 0.2) 0.32%, rgba(205, 213, 224, 0.2) 32.08%, rgba(205, 213, 224, 0.2) 60.87%, rgba(255, 255, 255, 0.2) 95.61%),
+  //   linear-gradient(160.61deg, rgba(255, 255, 255, 0.48) 13.02%, rgba(255, 255, 255, 0.4) 55.88%, rgba(255, 255, 255, 0) 99.64%);
 
   &-body {
     // @apply grid gap-1 items-center;
@@ -118,14 +105,14 @@ const valueChange = function () {
   }
 
   &__label {
-    // @apply pr-4 w-auto block text-right;
+    height: 16px;
     font-family: Dosis;
     font-size: 12px;
     font-weight: 600;
-    line-height: 15px;
-    letter-spacing: 0px;
     text-align: center;
     color: #BCBCBC;
+    text-shadow: 1.6px 1.6px 3.2px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
 
     &-input {
       width: 10rem;
@@ -134,29 +121,45 @@ const valueChange = function () {
 }
 
 .question-title {
+  height: 26px;
+  margin: 0 35px 20px;
+  text-shadow: 1.6px 1.6px 3.2px rgba(0, 0, 0, 0.25);
+  -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
   font-family: Dosis;
   font-size: 20px;
   font-weight: 600;
-  line-height: 25px;
-  letter-spacing: 0px;
   text-align: center;
-  color: #BCBCBC
+  color: #BCBCBC;
+
+  // font-family: Dosis;
+  // font-size: 20px;
+  // font-weight: 600;
+  // line-height: 25px;
+  // letter-spacing: 0px;
+  // text-align: center;
+  // color: #BCBCBC;
+  // text-shadow: 1.6px 1.6px 3.2px rgba(0, 0, 0, 0.25);
+  // -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
+}
+
+.step-btn {
+  width: 6px;
+  box-shadow: inset 1.5px 1.5px 3px 0 rgba(0, 0, 0, 0.25);
+  border: solid 0.5px rgba(255, 255, 255, 0.5);
 }
 
 .linear-bg-btn {
   box-sizing: border-box;
   border: none;
+  border-radius: 0.75rem;
   display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  background: radial-gradient(64.29% 64.29% at 50% 50%, #E0E6EC 0%, rgba(224, 230, 236, 0) 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
-  padding: 8px;
-  line-height: 8px;
-  font-size: 0.5rem;
-  box-shadow: -7px -7px 12px 0px #FFFFFF99;
-  box-shadow: 3px 3px 12px 0px #A3B1C699;
-
+  // width: 60px;
+  // height: 60px;
+  // background: radial-gradient(64.29% 64.29% at 50% 50%, #E0E6EC 0%, rgba(224, 230, 236, 0) 100%),
+  //   linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
+  //   linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+  // font-size: 0.5rem;
+  // line-height: 0.5rem;
+  // box-shadow: -7px -7px 12px 0px #FFFFFF99, 3px 3px 12px 0px #A3B1C699;
 }
 </style>

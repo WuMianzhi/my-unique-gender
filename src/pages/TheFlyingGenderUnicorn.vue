@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-sky-50 rounded-xl shadow-xl md:p-24">
+  <div class=" rounded-xl p-0 md:p-24">
     <!-- <h1 class="text-left font-bold text-6xl pb-8 pt-12 rainbow-text md:text-center">
       飞起来的 <br> 性别独角兽
     </h1> -->
@@ -24,36 +24,37 @@
       </div>
 
       <!-- 性别认同 / 性别身份 -->
-      <IdentityCardComponent :groupTitle="genderIdentity.title" :category="genderIdentity.category"
-        :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" @selfChange="changeHandle" />
+      <IdentityCardComponent :title="genderIdentity.title" :category="genderIdentity.category"
+        :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" @selfChange="updateGIdByMod"
+        @update-val="updateGId" />
 
       <!-- 外生殖器形态 -->
-      <GenitalsVue />
+      <!-- <GenitalsVue /> -->
 
       <!-- 性别表达气质 -->
-      <IdentityCardComponent :groupTitle="genderExpression.title" :category="genderExpression.category"
-        :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" />
+      <!-- <IdentityCardComponent :groupTitle="genderExpression.title" :category="genderExpression.category"
+        :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" /> -->
 
       <!-- 性激素水平 -->
-      <HormoneLevelsVue />
+      <!-- <HormoneLevelsVue /> -->
 
       <!-- 出生指派性别 -->
-      <GenderAssignedAtBirthVue />
+      <!-- <GenderAssignedAtBirthVue /> -->
 
       <!-- 性染色体 -->
-      <ChromosomesVue />
+      <!-- <ChromosomesVue /> -->
 
       <!-- 性 / 情欲倾向的认同 / 身份 -->
-      <IdentityCardComponent :groupTitle="sexualIdentity.title" :category="sexualIdentity.category"
-        :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" />
+      <!-- <IdentityCardComponent :groupTitle="sexualIdentity.title" :category="sexualIdentity.category"
+        :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" /> -->
 
       <!-- 生理上的吸引 -->
-      <IdentityCardComponent :groupTitle="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
-        :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom" />
+      <!-- <IdentityCardComponent :groupTitle="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
+        :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom" /> -->
 
       <!-- 亲密关系上的吸引 -->
-      <IdentityCardComponent :groupTitle="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
-        :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom" />
+      <!-- <IdentityCardComponent :groupTitle="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
+        :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom" /> -->
 
 
 
@@ -63,65 +64,87 @@
 
 <script setup lang="ts">
 // import html2canvas from "html2canvas";
-import ChromosomesVue from "../components/Chromosomes.vue";
-import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
-import GenitalsVue from "../components/Genitals.vue";
-import HormoneLevelsVue from "../components/HormoneLevels.vue";
+// import ChromosomesVue from "../components/Chromosomes.vue";
+// import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
+// import GenitalsVue from "../components/Genitals.vue";
+// import HormoneLevelsVue from "../components/HormoneLevels.vue";
 import IdentityCardComponent from "../components/IdentityCardComponent.vue";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+import { GenderGroup } from '../types/index'
 
-const genderIdentity = {
+const genderIdentity: GenderGroup = reactive({
   title: "性别认同/性别身份",
-  category: ["非二元性别", "跨性别", "女性", "男性"],
+  category: [{
+    name: "非二元性别",
+    colorSeries: [[255, 146, 146], [255, 214, 167]],
+    value: 50
+  }, {
+    name: "跨性别",
+    colorSeries: [[255, 214, 167], [255, 251, 143]],
+    value: 50
+  }, {
+    name: "女性",
+    colorSeries: [[255, 251, 143], [201, 255, 175]],
+    value: 50
+  }, {
+    name: "男性",
+    colorSeries: [[201, 255, 175], [144, 248, 255]],
+    value: 50
+  }],
   mainColor: "red",
   hasCustom: true
-};
+});
 
-const genderExpression = {
-  title: "性别表达/性别气质",
-  category: ["中性/未定义", "阴柔/女性化", "阳刚/男性化"],
-  mainColor: "emerald",
-  hasCustom: false
-};
-
-const sexualIdentity = {
-  title: "性/情欲倾向的认同/身份",
-  category: ["酷儿", "双性恋", "同性恋", "异性恋", "Customer"],
-  mainColor: "fuchsia",
-  hasCustom: true
-};
-
-const physicallyAttractedTo = {
-  title: "生理上的吸引",
-  category: [
-    "无性吸引",
-    "非二元性别者",
-    "跨性别女性",
-    "跨性别男性",
-    "顺性别女性",
-    "顺性别男性",
-  ],
-  mainColor: "pink",
-  hasCustom: false
-};
-
-const emotionallyAttractedTo = {
-  title: "亲密关系上的吸引",
-  category: [
-    "无情感吸引",
-    "非二元性别者",
-    "跨性别女性",
-    "跨性别男性",
-    "顺性别女性",
-    "顺性别男性",
-  ],
-  mainColor: "rose",
-  hasCustom: false
-};
-
-const changeHandle = (change: number[]) => {
-  console.log('changed', change);
+const updateGId = (index: number, val: number) => {
+  genderIdentity.category[index].value = val
 }
+
+const updateGIdByMod = (index: number, param: number) => {
+  genderIdentity.category[index].value += param
+}
+// const genderExpression = {
+//   title: "性别表达/性别气质",
+//   category: ["中性/未定义", "阴柔/女性化", "阳刚/男性化"],
+//   mainColor: "emerald",
+//   hasCustom: false
+// };
+
+// const sexualIdentity = {
+//   title: "性/情欲倾向的认同/身份",
+//   category: ["酷儿", "双性恋", "同性恋", "异性恋", "Customer"],
+//   mainColor: "fuchsia",
+//   hasCustom: true
+// };
+
+// const physicallyAttractedTo = {
+//   title: "生理上的吸引",
+//   category: [
+//     "无性吸引",
+//     "非二元性别者",
+//     "跨性别女性",
+//     "跨性别男性",
+//     "顺性别女性",
+//     "顺性别男性",
+//   ],
+//   mainColor: "pink",
+//   hasCustom: false
+// };
+
+// const emotionallyAttractedTo = {
+//   title: "亲密关系上的吸引",
+//   category: [
+//     "无情感吸引",
+//     "非二元性别者",
+//     "跨性别女性",
+//     "跨性别男性",
+//     "顺性别女性",
+//     "顺性别男性",
+//   ],
+//   mainColor: "rose",
+//   hasCustom: false
+// };
+
+
 
 // 使用 ref 创建一个引用，以指向我们想要捕获的 DOM 元素
 const captureTarget = ref(null);

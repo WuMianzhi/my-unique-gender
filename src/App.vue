@@ -12,24 +12,9 @@ import TheFlyingGenderUnicorn from "./pages/TheFlyingGenderUnicorn.vue";
   overflow: hidden;
   margin: 1rem 0;
   color: #222222;
-  box-shadow: 4px 4px 8px -4px #7b7b7b97;
-  border-radius: 1rem;
+  border-radius: 2rem;
   font-size: 1.6rem;
-
-  // &:before {
-  //   content: '';
-  //   position: absolute;
-  //   display: block;
-  //   bottom: 0rem;
-  //   left: 0rem;
-  //   width: 20rem;
-  //   height: 20rem;
-  //   border-radius: 100%;
-  //   background: #949494;
-  //   opacity: 0.1;
-  //   z-index: 0;
-  //   transform: translate(-50%, 50%);
-  // }
+  background-image: linear-gradient(65deg, rgba(255, 255, 255, 0.6) 17%, rgba(255, 255, 255, 0.5) 57%, rgba(255, 255, 255, 0) 99%), linear-gradient(44deg, #e5e5e5 0%, #cdd5e0 32%, #cdd5e0 61%, #fff 96%);
 }
 
 .text-slate {
@@ -56,7 +41,7 @@ import TheFlyingGenderUnicorn from "./pages/TheFlyingGenderUnicorn.vue";
   @apply bg-gradient-to-r from-red-500 to-rose-500 bg-clip-text transparent-text
 }
 
-.colors{
+.colors {
   @apply to-red-500 to-emerald-500 to-fuchsia-500 to-pink-500 to-rose-500
 }
 
