@@ -8,57 +8,70 @@
       class="grid items-stretch divide-y-4 sm:gap-x-32 sm:gap-y-16 sm:divide-y-0 md:gap-x-32 md:gap-y-32 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-4">
       <div class="lg:row-span-3 relative" ref="captureTarget">
 
-        <div class="svg-container absolute">
-
-        </div>
+        <div class="svg-container absolute"> </div>
 
         <div class="blur-background flex items-center justify-center w-64 h-64 pt-16">
           <img src="../assets/unicorn.svg" alt="unicorn" srcset="" class="p-8">
         </div>
-
-
 
         <!-- 捕获并下载的按钮 -->
         <!-- <button @click="captureAndDownload">Capture and Download</button> -->
 
       </div>
 
-      <!-- 性别认同 / 性别身份 -->
-      <IdentityCardComponent :title="genderIdentity.title" :category="genderIdentity.category"
-        :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" @selfChange="updateGIdByMod"
-        @update-val="updateGId" />
+      <div>
+        <!-- 性别认同 / 性别身份 -->
+        <div v-show="current === 1">
+          <IdentityCardComponent :title="genderIdentity.title" :category="genderIdentity.category"
+            :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" @selfChange="updateGIdByMod"
+            @update-val="updateGId" />
+        </div>
 
-      <!-- 外生殖器形态 -->
-      <!-- <GenitalsVue /> -->
+        <!-- 外生殖器形态 -->
+        <!-- <GenitalsVue /> -->
 
-      <!-- 性别表达气质 -->
-      <IdentityCardComponent :title="genderExpression.title" :category="genderExpression.category"
-        :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" @selfChange="updateGexByMod"
-        @update-val="updateGex" />
+        <!-- 性别表达气质 -->
+        <div v-show="current === 2">
+          <IdentityCardComponent :title="genderExpression.title" :category="genderExpression.category"
+            :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" @selfChange="updateGexByMod"
+            @update-val="updateGex" />
+        </div>
 
-      <!-- 性激素水平 -->
-      <!-- <HormoneLevelsVue /> -->
+        <!-- 性激素水平 -->
+        <!-- <HormoneLevelsVue /> -->
 
-      <!-- 出生指派性别 -->
-      <!-- <GenderAssignedAtBirthVue /> -->
+        <!-- 出生指派性别 -->
+        <!-- <GenderAssignedAtBirthVue /> -->
 
-      <!-- 性染色体 -->
-      <!-- <ChromosomesVue /> -->
+        <!-- 性染色体 -->
+        <!-- <ChromosomesVue /> -->
 
-      <!-- 性 / 情欲倾向的认同 / 身份 -->
-      <!-- <IdentityCardComponent :groupTitle="sexualIdentity.title" :category="sexualIdentity.category"
-        :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" /> -->
+        <!-- 性 / 情欲倾向的认同 / 身份 -->
+        <div v-show="current === 3">
+          <IdentityCardComponent :title="sexualIdentity.title" :category="sexualIdentity.category"
+            :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" @self-change="updateSIdByMod"
+            @update-val="updateSId" />
+        </div>
 
-      <!-- 生理上的吸引 -->
-      <!-- <IdentityCardComponent :groupTitle="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
-        :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom" /> -->
+        <!-- 生理上的吸引 -->
+        <div v-show="current === 4">
+          <IdentityCardComponent :title="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
+            :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom"
+            @self-change="updatePhyAddByMod" @update-val="updatePhyAdd" />
+        </div>
 
-      <!-- 亲密关系上的吸引 -->
-      <!-- <IdentityCardComponent :groupTitle="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
-        :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom" /> -->
+        <!-- 亲密关系上的吸引 -->
+        <div v-show="current === 5">
+          <IdentityCardComponent :title="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
+            :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom"
+            @self-change="updateEmoAddByMod" @update-val="updateEmoAdd" />
+        </div>
+      </div>
 
-
-
+      <div>
+        <button @click="prevPage" class="h-10 text-sm px-6 font-semibold rounded-md bg-black text-white">prevPage</button>
+        <button @click="nextPage" class="h-10 text-sm px-6 font-semibold rounded-md border border-slate-200 text-slate-900">nextPage</button>
+      </div>
     </div>
   </div>
 </template>
@@ -73,95 +86,52 @@ import IdentityCardComponent from "../components/IdentityCardComponent.vue";
 import { ref } from "vue";
 import { genderIdentity } from './genderGroup/GId'
 import { genderExpression } from './genderGroup/GEx'
+import { sexualIdentity } from './genderGroup/SId'
 import { GenderGroup } from "../types/index";
+import { physicallyAttractedTo } from './genderGroup/PhyAdd'
+import { emotionallyAttractedTo } from './genderGroup/EmoAdd'
 
-const updateVal = (index: number, val: number, ds: GenderGroup) => {
+const updateVal = (index: number, val: number, ds: GenderGroup) =>
   ds.category[index].value = val
-}
 
-const updateValByMod = (index: number, mod: number, ds: GenderGroup) => {
+const updateValByMod = (index: number, mod: number, ds: GenderGroup) =>
   ds.category[index].value += mod
-}
 
-const updateGex = (index: number, val: number) => {
+const updateGex = (index: number, val: number) =>
   updateVal(index, val, genderExpression)
-}
 
-const updateGexByMod = (index: number, val: number) => {
+const updateGexByMod = (index: number, val: number) =>
   updateValByMod(index, val, genderExpression)
-}
 
-// const genderIdentity: GenderGroup = reactive({
-//   title: "性别认同/性别身份",
-//   category: [{
-//     name: "非二元性别",
-//     colorSeries: ['ff9292', 'ffd6a7'],
-//     value: 50
-//   }, {
-//     name: "跨性别",
-//     colorSeries: ['ffd6a7', 'fffb8f'],
-//     value: 50
-//   }, {
-//     name: "女性",
-//     colorSeries: ['fffb8f', 'c9ffaf'],
-//     value: 50
-//   }, {
-//     name: "男性",
-//     colorSeries: ['c9ffaf', '90f8ff'],
-//     value: 50
-//   }, {
-//     name: "自定义",
-//     colorSeries: ['90f8ff', '9390ff'],
-//     value: 50
-//   }],
-//   mainColor: "red",
-//   hasCustom: false
-// });
+const updateGId = (index: number, val: number) =>
+  updateVal(index, val, genderIdentity)
 
-const updateGId = (index: number, val: number) => {
-  genderIdentity.category[index].value = val
-}
+const updateGIdByMod = (index: number, param: number) =>
+  updateValByMod(index, param, genderIdentity)
 
-const updateGIdByMod = (index: number, param: number) => {
-  genderIdentity.category[index].value += param
-}
+const updateSId = (index: number, val: number) =>
+  updateVal(index, val, sexualIdentity)
 
+const updateSIdByMod = (index: number, param: number) =>
+  updateValByMod(index, param, sexualIdentity)
 
-// const sexualIdentity = {
-//   title: "性/情欲倾向的认同/身份",
-//   category: ["酷儿", "双性恋", "同性恋", "异性恋", "Customer"],
-//   mainColor: "fuchsia",
-//   hasCustom: true
-// };
+const updatePhyAdd = (index: number, val: number) =>
+  updateVal(index, val, physicallyAttractedTo)
 
-// const physicallyAttractedTo = {
-//   title: "生理上的吸引",
-//   category: [
-//     "无性吸引",
-//     "非二元性别者",
-//     "跨性别女性",
-//     "跨性别男性",
-//     "顺性别女性",
-//     "顺性别男性",
-//   ],
-//   mainColor: "pink",
-//   hasCustom: false
-// };
+const updatePhyAddByMod = (index: number, param: number) =>
+  updateValByMod(index, param, physicallyAttractedTo)
 
-// const emotionallyAttractedTo = {
-//   title: "亲密关系上的吸引",
-//   category: [
-//     "无情感吸引",
-//     "非二元性别者",
-//     "跨性别女性",
-//     "跨性别男性",
-//     "顺性别女性",
-//     "顺性别男性",
-//   ],
-//   mainColor: "rose",
-//   hasCustom: false
-// };
+const updateEmoAdd = (index: number, val: number) =>
+  updateVal(index, val, emotionallyAttractedTo)
 
+const updateEmoAddByMod = (index: number, param: number) =>
+  updateValByMod(index, param, emotionallyAttractedTo)
+
+const current = ref(1)
+
+const nextPage = () => current.value < 5 ? (current.value += 1) : null
+
+const prevPage = () => current.value > 1 ? (current.value -= 1) : null;
 
 
 // 使用 ref 创建一个引用，以指向我们想要捕获的 DOM 元素

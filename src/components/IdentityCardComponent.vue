@@ -1,6 +1,5 @@
 <template>
   <div class="identify-card card grid bg-white px-6 py-10 
-
             md:bg-white md:p-12 md:rounded-lg md:shadow-lg
               lg:bg-slate-50 lg:p-6 lg:shadow-lg">
     <h2 class="text-4xl pb-6 z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left question-title">
@@ -117,12 +116,11 @@ const hex2RGB = (hex: string) => {
     height: 16px;
     font-family: Dosis;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: bolder;
     text-align: center;
     color: #BCBCBC;
-    text-shadow: 1.6px 1.6px 3.2px rgba(0, 0, 0, 0.25);
-    -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
-
+    font-weight: bolder;
+    -webkit-text-stroke: 0.8px rgba(235, 235, 235, 0.5);
     &-input {
       width: 10rem;
     }
@@ -132,23 +130,13 @@ const hex2RGB = (hex: string) => {
 .question-title {
   height: 26px;
   margin: 0 35px 20px;
-  text-shadow: 1.6px 1.6px 3.2px rgba(0, 0, 0, 0.25);
   -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
   font-family: Dosis;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: bolder;
   text-align: center;
   color: #BCBCBC;
-
-  // font-family: Dosis;
-  // font-size: 20px;
-  // font-weight: 600;
-  // line-height: 25px;
-  // letter-spacing: 0px;
-  // text-align: center;
-  // color: #BCBCBC;
-  // text-shadow: 1.6px 1.6px 3.2px rgba(0, 0, 0, 0.25);
-  // -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
+  // text-shadow: 1px 6px 6px #fff,0 0 0 #f00,1px 3px 6px #fff;}
 }
 
 .step-btn {
@@ -162,13 +150,5 @@ const hex2RGB = (hex: string) => {
   border: none;
   border-radius: 0.75rem;
   display: inline-block;
-  // width: 60px;
-  // height: 60px;
-  // background: radial-gradient(64.29% 64.29% at 50% 50%, #E0E6EC 0%, rgba(224, 230, 236, 0) 100%),
-  //   linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
-  //   linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
-  // font-size: 0.5rem;
-  // line-height: 0.5rem;
-  // box-shadow: -7px -7px 12px 0px #FFFFFF99, 3px 3px 12px 0px #A3B1C699;
 }
 </style>
