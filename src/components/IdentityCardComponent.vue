@@ -1,16 +1,17 @@
 <template>
-  <div class="identify-card card grid bg-white px-6 py-10 
+  <div class="identify-card m-4 card grid w-80 bg-white p-6  
             md:bg-white md:p-12 md:rounded-lg md:shadow-lg
               lg:bg-slate-50 lg:p-6 lg:shadow-lg">
-    <h2 class="text-4xl pb-6 z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left question-title">
-      <a href="#" :class="['question-title']">
+    <h2 class="text-2xl z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left">
+      <a href="#" class="question-title">
         {{ title }}
       </a>
     </h2>
 
     <div class="identify-card-body">
+      <slot name="before-slot"></slot>
       <template v-for="(identity, index) in category" :key="index">
-        <div class="w-full">
+        <div class="w-full mb-2">
           <div class="w-full flex items-center gap-2 ">
             <!-- 减少一级 -->
             <button class="linear-bg-btn m-0 p-0 bg-transparent" @click="modValByParam(index, -5)">
@@ -38,7 +39,7 @@
         </div>
 
       </template>
-      <template v-if="hasCustom">
+      <!-- <template v-if="hasCustom">
         <input type="range" min="0" max="100" value="0" :class="[
           'w-full',
           'h-2',
@@ -60,7 +61,8 @@
             'rounded',
           ]" placeholder="自定义" />
         </label>
-      </template>
+      </template> -->
+      <slot name="afterSlot"></slot>
     </div>
   </div>
 </template>
@@ -129,10 +131,9 @@ const hex2RGB = (hex: string) => {
 
 .question-title {
   height: 26px;
-  margin: 0 35px 20px;
   -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
   font-family: Dosis;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bolder;
   text-align: center;
   color: #BCBCBC;

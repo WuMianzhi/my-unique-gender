@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ant-design-vue": "^4.0.8",
     "html2canvas": "^1.4.1",
     "sass": "^1.66.1",
     "vue": "^3.3.4"

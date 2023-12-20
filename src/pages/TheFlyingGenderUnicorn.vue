@@ -5,12 +5,12 @@
     </h1> -->
 
     <div
-      class="grid items-stretch divide-y-4 sm:gap-x-32 sm:gap-y-16 sm:divide-y-0 md:gap-x-32 md:gap-y-32 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-4">
+      class="grid items-stretch sm:gap-x-32 sm:gap-y-16 sm:divide-y-0 md:gap-x-32 md:gap-y-32 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-4">
       <div class="lg:row-span-3 relative" ref="captureTarget">
 
         <div class="svg-container absolute"> </div>
 
-        <div class="blur-background flex items-center justify-center w-64 h-64 pt-16">
+        <div class="blur-background flex items-center justify-center w-64 h-64">
           <img src="../assets/unicorn.svg" alt="unicorn" srcset="" class="p-8">
         </div>
 
@@ -19,7 +19,7 @@
 
       </div>
 
-      <div>
+      <div class="px-6">
         <!-- 性别认同 / 性别身份 -->
         <div v-show="current === 1">
           <IdentityCardComponent :title="genderIdentity.title" :category="genderIdentity.category"
@@ -34,14 +34,18 @@
         <div v-show="current === 2">
           <IdentityCardComponent :title="genderExpression.title" :category="genderExpression.category"
             :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" @selfChange="updateGexByMod"
-            @update-val="updateGex" />
+            @update-val="updateGex">
+            <template #afterSlot>
+              <!-- 出生指派性别 -->
+              <GenderAssignedAtBirthVue />
+            </template>
+          </IdentityCardComponent>
         </div>
 
         <!-- 性激素水平 -->
         <!-- <HormoneLevelsVue /> -->
 
-        <!-- 出生指派性别 -->
-        <!-- <GenderAssignedAtBirthVue /> -->
+
 
         <!-- 性染色体 -->
         <!-- <ChromosomesVue /> -->
@@ -50,27 +54,41 @@
         <div v-show="current === 3">
           <IdentityCardComponent :title="sexualIdentity.title" :category="sexualIdentity.category"
             :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" @self-change="updateSIdByMod"
-            @update-val="updateSId" />
+            @update-val="updateSId">
+
+          </IdentityCardComponent>
         </div>
 
         <!-- 生理上的吸引 -->
         <div v-show="current === 4">
           <IdentityCardComponent :title="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
             :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom"
-            @self-change="updatePhyAddByMod" @update-val="updatePhyAdd" />
+            @self-change="updatePhyAddByMod" @update-val="updatePhyAdd">
+            <template #before-slot>
+              <Switch v-model:checked="notAttract"/>
+            </template>
+          </IdentityCardComponent>
         </div>
 
         <!-- 亲密关系上的吸引 -->
         <div v-show="current === 5">
           <IdentityCardComponent :title="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
             :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom"
-            @self-change="updateEmoAddByMod" @update-val="updateEmoAdd" />
+            @self-change="updateEmoAddByMod" @update-val="updateEmoAdd" >
+            <template #before-slot>
+              <Switch v-model:checked="notAttract"/>
+            </template>
+          </IdentityCardComponent>
         </div>
       </div>
 
       <div>
-        <button @click="prevPage" class="h-10 text-sm px-6 font-semibold rounded-md bg-black text-white">prevPage</button>
-        <button @click="nextPage" class="h-10 text-sm px-6 font-semibold rounded-md border border-slate-200 text-slate-900">nextPage</button>
+        <button @click="prevPage" class="p-0 m-0 bg-transparent">
+          <img src="../assets/left.svg" />
+        </button>
+        <button @click="nextPage" class="p-0 m-0 bg-transparent">
+          <img src="../assets/right.svg" />
+        </button>
       </div>
     </div>
   </div>
@@ -79,9 +97,10 @@
 <script setup lang="ts">
 // import html2canvas from "html2canvas";
 // import ChromosomesVue from "../components/Chromosomes.vue";
-// import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
+import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
 // import GenitalsVue from "../components/Genitals.vue";
 // import HormoneLevelsVue from "../components/HormoneLevels.vue";
+import { Switch } from "ant-design-vue";
 import IdentityCardComponent from "../components/IdentityCardComponent.vue";
 import { ref } from "vue";
 import { genderIdentity } from './genderGroup/GId'
@@ -90,6 +109,8 @@ import { sexualIdentity } from './genderGroup/SId'
 import { GenderGroup } from "../types/index";
 import { physicallyAttractedTo } from './genderGroup/PhyAdd'
 import { emotionallyAttractedTo } from './genderGroup/EmoAdd'
+
+const notAttract = ref(true)
 
 const updateVal = (index: number, val: number, ds: GenderGroup) =>
   ds.category[index].value = val
