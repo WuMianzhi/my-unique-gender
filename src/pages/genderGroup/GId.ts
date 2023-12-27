@@ -25,7 +25,7 @@ export const genderIdentity: GenderGroup = reactive({
       value: 50,
     },
     {
-      name: "自定义",
+      name: "customer",
       colorSeries: ["90f8ff", "9390ff"],
       value: 50,
     },

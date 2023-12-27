@@ -65,7 +65,7 @@
             :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom"
             @self-change="updatePhyAddByMod" @update-val="updatePhyAdd">
             <template #before-slot>
-              <Switch v-model:checked="notAttract"/>
+              <Switch v-model:checked="notAttract" />
             </template>
           </IdentityCardComponent>
         </div>
@@ -74,9 +74,9 @@
         <div v-show="current === 5">
           <IdentityCardComponent :title="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
             :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom"
-            @self-change="updateEmoAddByMod" @update-val="updateEmoAdd" >
+            @self-change="updateEmoAddByMod" @update-val="updateEmoAdd">
             <template #before-slot>
-              <Switch v-model:checked="notAttract"/>
+              <Switch v-model:checked="notAttract" />
             </template>
           </IdentityCardComponent>
         </div>
@@ -115,8 +115,10 @@ const notAttract = ref(true)
 const updateVal = (index: number, val: number, ds: GenderGroup) =>
   ds.category[index].value = val
 
-const updateValByMod = (index: number, mod: number, ds: GenderGroup) =>
-  ds.category[index].value += mod
+const updateValByMod = (index: number, mod: number, ds: GenderGroup) => {
+  const res = ds.category[index].value + mod;
+  (res < 101 && res > 0) ? ds.category[index].value += mod : null
+}
 
 const updateGex = (index: number, val: number) =>
   updateVal(index, val, genderExpression)

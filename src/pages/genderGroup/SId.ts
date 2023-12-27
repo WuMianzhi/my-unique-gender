@@ -8,7 +8,7 @@ export const sexualIdentity: GenderGroup = reactive({
     { name: "双性恋", colorSeries: ["ffd6a7", "fffb8f"], value: 50 },
     { name: "同性恋", colorSeries: ["fffb8f", "c9ffaf"], value: 50 },
     { name: "异性恋", colorSeries: ["c9ffaf", "90f8ff"], value: 50 },
-    { name: "Customer", colorSeries: ["90f8ff", "9390ff"], value: 50 },
+    { name: "customer", colorSeries: ["90f8ff", "9390ff"], value: 50 },
   ],
   mainColor: "fuchsia",
   hasCustom: true,

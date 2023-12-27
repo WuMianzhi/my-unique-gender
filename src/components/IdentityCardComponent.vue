@@ -11,11 +11,11 @@
     <div class="identify-card-body">
       <slot name="before-slot"></slot>
       <template v-for="(identity, index) in category" :key="index">
-        <div class="w-full mb-2">
+        <div class="w-full py-2">
           <div class="w-full flex items-center gap-2 ">
             <!-- 减少一级 -->
-            <button class="linear-bg-btn m-0 p-0 bg-transparent" @click="modValByParam(index, -5)">
-              <img src="../assets/minus.png" class="w-8 h-8" alt="减少" srcset="">
+            <button class="linear-bg-btn flex m-0 p-0" @click="modValByParam(index, -5)">
+              <span class="relative btn-inner">-</span>
             </button>
             <!-- 中间的按钮 -->
             <div class="flex-1 flex justify-between ">
@@ -26,12 +26,16 @@
               </template>
             </div>
             <!--  添加一级 -->
-            <button class="linear-bg-btn m-0 p-0 bg-transparent" @click="modValByParam(index, 5)">
-              <img src="../assets/plus.png" alt="减少" srcset="" class="w-8 h-8">
+            <button class="linear-bg-btn m-0 p-0 " @click="modValByParam(index, 5)">
+              <span class="relative btn-inner">+</span>
             </button>
           </div>
 
-          <div class="p-0 m-0 h-4 flex items-center justify-around align-baseline relative bottom-1">
+          <div v-if="identity.name == 'customer'" class="p-0 m-0 h-4 flex items-center justify-around align-baseline bg-transparent rounded">
+            <input type="text" name="customer" id="customer" placeholder="（自定义！）" class="identify-card__label text-center rounded-lg bg-transparent text-sm">
+          </div>
+
+          <div v-else class="p-0 m-0 h-4 flex items-center justify-around align-baseline relative bottom-1">
             <label class="identify-card__label text-center ">
               {{ identity.name }}
             </label>
@@ -123,6 +127,7 @@ const hex2RGB = (hex: string) => {
     color: #BCBCBC;
     font-weight: bolder;
     -webkit-text-stroke: 0.8px rgba(235, 235, 235, 0.5);
+
     &-input {
       width: 10rem;
     }
@@ -148,8 +153,33 @@ const hex2RGB = (hex: string) => {
 
 .linear-bg-btn {
   box-sizing: border-box;
-  border: none;
-  border-radius: 0.75rem;
+  border: solid 1.5px rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
   display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  box-shadow: -6.7px -6.7px 11.9px 0 rgba(255, 255, 255, 0.6),
+    3px 3px 11.9px 0 rgba(163, 177, 198, 0.6);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(circle at 50% 50%, #e0e6ec, rgba(224, 230, 236, 0) 91%);
+
+  color: #BCBCBC;
+  -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
+  font-family: Dosis;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-inner {
+  position: relative;
+  top: -2px;
+  // width: 1rem;
+  // line-height: 1rem;
+  // height: 1rem;
+  // padding: 0;
+  // line-height: 0.1rem;
 }
 </style>
