@@ -42,16 +42,19 @@
           </IdentityCardComponent>
         </div>
 
+        <div v-show="current === 3">
+          <PhysioChar></PhysioChar>
+        </div>
+
         <!-- 性激素水平 -->
         <!-- <HormoneLevelsVue /> -->
-
 
 
         <!-- 性染色体 -->
         <!-- <ChromosomesVue /> -->
 
         <!-- 性 / 情欲倾向的认同 / 身份 -->
-        <div v-show="current === 3">
+        <div v-show="current === 4">
           <IdentityCardComponent :title="sexualIdentity.title" :category="sexualIdentity.category"
             :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" @self-change="updateSIdByMod"
             @update-val="updateSId">
@@ -60,7 +63,7 @@
         </div>
 
         <!-- 生理上的吸引 -->
-        <div v-show="current === 4">
+        <div v-show="current === 5">
           <IdentityCardComponent :title="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
             :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom"
             @self-change="updatePhyAddByMod" @update-val="updatePhyAdd">
@@ -71,7 +74,7 @@
         </div>
 
         <!-- 亲密关系上的吸引 -->
-        <div v-show="current === 5">
+        <div v-show="current === 6">
           <IdentityCardComponent :title="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
             :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom"
             @self-change="updateEmoAddByMod" @update-val="updateEmoAdd">
@@ -82,10 +85,20 @@
         </div>
       </div>
 
-      <div>
+      <div class="flex justify-between items-center  ">
         <button @click="prevPage" class="p-0 m-0 bg-transparent">
           <img src="../assets/left.svg" />
         </button>
+        <div class="steps rounded-full">
+          <div class="flex justify-between backdrop-blur-xl items-center h-full rounded-full">
+            <button class="step-btn"></button>
+            <button class="step-btn"></button>
+            <button class="step-btn"></button>
+            <button class="step-btn"></button>
+            <button class="step-btn"></button>
+            <button class="step-btn"></button>
+          </div>
+        </div>
         <button @click="nextPage" class="p-0 m-0 bg-transparent">
           <img src="../assets/right.svg" />
         </button>
@@ -109,6 +122,9 @@ import { sexualIdentity } from './genderGroup/SId'
 import { GenderGroup } from "../types/index";
 import { physicallyAttractedTo } from './genderGroup/PhyAdd'
 import { emotionallyAttractedTo } from './genderGroup/EmoAdd'
+import PhysioChar from "../components/PhysioChar.vue";
+// import { Icon } from "@iconify/vue/dist/iconify.js";
+
 
 const notAttract = ref(true)
 
@@ -152,7 +168,7 @@ const updateEmoAddByMod = (index: number, param: number) =>
 
 const current = ref(1)
 
-const nextPage = () => current.value < 5 ? (current.value += 1) : null
+const nextPage = () => current.value < 6 ? (current.value += 1) : null
 
 const prevPage = () => current.value > 1 ? (current.value -= 1) : null;
 
@@ -208,5 +224,22 @@ const captureTarget = ref(null);
   height: 100%;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(36px);
+}
+
+.steps {
+  width: 12rem;
+  height: 2rem;
+  box-shadow: -5.2px -5.2px 9.2px 0 rgba(255, 255, 255, 0.6);
+  border: solid 2.4px rgba(255, 255, 255, 0.3);
+  background-image: linear-gradient(to right, #f00 0%, #f90 20%, #fff500 41%, #00ff29 61%, #0038ff 81%, #8f00ff 101%);
+}
+
+.step-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
 }
 </style>
