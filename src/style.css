@@ -128,6 +128,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 .subtitle {
   height: 16px;
+  line-height: 16px;
   font-family: Dosis;
   font-size: 16px;
   font-weight: bolder;

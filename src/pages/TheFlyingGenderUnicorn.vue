@@ -68,7 +68,7 @@
             :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom"
             @self-change="updatePhyAddByMod" @update-val="updatePhyAdd">
             <template #before-slot>
-              <Switch v-model:checked="notAttract" />
+              <IsAttractiveCom></IsAttractiveCom>
             </template>
           </IdentityCardComponent>
         </div>
@@ -79,7 +79,7 @@
             :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom"
             @self-change="updateEmoAddByMod" @update-val="updateEmoAdd">
             <template #before-slot>
-              <Switch v-model:checked="notAttract" />
+              <IsAttractiveCom></IsAttractiveCom>
             </template>
           </IdentityCardComponent>
         </div>
@@ -113,7 +113,6 @@
 import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
 // import GenitalsVue from "../components/Genitals.vue";
 // import HormoneLevelsVue from "../components/HormoneLevels.vue";
-import { Switch } from "ant-design-vue";
 import IdentityCardComponent from "../components/IdentityCardComponent.vue";
 import { ref } from "vue";
 import { genderIdentity } from './genderGroup/GId'
@@ -123,10 +122,7 @@ import { GenderGroup } from "../types/index";
 import { physicallyAttractedTo } from './genderGroup/PhyAdd'
 import { emotionallyAttractedTo } from './genderGroup/EmoAdd'
 import PhysioChar from "../components/PhysioChar.vue";
-// import { Icon } from "@iconify/vue/dist/iconify.js";
-
-
-const notAttract = ref(true)
+import IsAttractiveCom from "../components/IsAttractiveCom.vue";
 
 const updateVal = (index: number, val: number, ds: GenderGroup) =>
   ds.category[index].value = val
