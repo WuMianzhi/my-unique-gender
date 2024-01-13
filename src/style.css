@@ -115,13 +115,36 @@ input[type="range"]::-webkit-slider-thumb {
   color: #BCBCBC;
 }
 
-.subtitle{
-  height: 16px;
+.main-title{
+  height: 26px;
+  -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
   font-family: Dosis;
-  font-size: 12px;
+  font-size: 20px;
   font-weight: bolder;
   text-align: center;
   color: #BCBCBC;
+  margin: 2rem;
+}
+
+.subtitle {
+  height: 16px;
+  font-family: Dosis;
+  font-size: 16px;
   font-weight: bolder;
-  -webkit-text-stroke: 0.8px rgba(235, 235, 235, 0.5);
+  color: #BCBCBC;
+  font-weight: bolder;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+}
+
+.score-btn {
+  height: 1rem;
+  width: 0.5rem;
+  padding: 0;
+  box-shadow: inset 1.5px 1.5px 3px 0 rgba(0, 0, 0, 0.25);
+  border: solid 0.5px rgba(255, 255, 255, 0.5);
+}
+
+.rainbow-bg {
+  background: linear-gradient(to right, rgba(255, 0, 0, 0.3) 0%, rgba(255, 153, 0, 0.3) 20.31%, rgba(255, 245, 0, 0.3) 41.15%, rgba(0, 255, 41, 0.3) 60.94%, rgba(0, 56, 255, 0.3) 80.73%, rgba(143, 0, 255, 0.3) 100%),
+    linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
