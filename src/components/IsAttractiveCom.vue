@@ -1,12 +1,12 @@
 <template>
   <div>
     <div
-      class="rounded-full w-20 h-8 relative mx-auto cursor-pointer bg-slate-500 flex items-center border-2 border-white/50 switch-btn-wrapper"
+      class="rounded-full w-24 h-8 relative mx-auto cursor-pointer bg-slate-500 flex items-center border-2 border-white/50 switch-btn-wrapper"
       :class="isAttract ? 'justify-start' : 'justify-end'" @click="isAttract = !isAttract">
       <span class="switch-btn w-4 h-4 rounded-full absolute border border-white/50 mx-1"
         :class="isAttract ? 'right-0' : 'left-0'"></span>
-      <span class="subtitle px-1" v-show="isAttract">被吸引</span>
-      <span class="subtitle px-1" v-show="!isAttract">没有人</span>
+      <span class="subtitle px-2" v-show="isAttract">被吸引</span>
+      <span class="subtitle px-2" v-show="!isAttract">不被吸引</span>
     </div>
   </div>
 </template>
