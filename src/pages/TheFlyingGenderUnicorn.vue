@@ -21,7 +21,7 @@
 
       <div class="px-6">
         <!-- 性别认同 / 性别身份 -->
-        <div v-show="current === 1">
+        <div v-show="currentPage === 1">
           <IdentityCardComponent :title="genderIdentity.title" :category="genderIdentity.category"
             :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" @selfChange="updateGIdByMod"
             @update-val="updateGId" />
@@ -31,7 +31,7 @@
         <!-- <GenitalsVue /> -->
 
         <!-- 性别表达气质 -->
-        <div v-show="current === 2">
+        <div v-show="currentPage === 2">
           <IdentityCardComponent :title="genderExpression.title" :category="genderExpression.category"
             :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" @selfChange="updateGexByMod"
             @update-val="updateGex">
@@ -42,7 +42,7 @@
           </IdentityCardComponent>
         </div>
 
-        <div v-show="current === 3">
+        <div v-show="currentPage === 3">
           <PhysioChar></PhysioChar>
         </div>
 
@@ -54,7 +54,7 @@
         <!-- <ChromosomesVue /> -->
 
         <!-- 性 / 情欲倾向的认同 / 身份 -->
-        <div v-show="current === 4">
+        <div v-show="currentPage === 4">
           <IdentityCardComponent :title="sexualIdentity.title" :category="sexualIdentity.category"
             :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" @self-change="updateSIdByMod"
             @update-val="updateSId">
@@ -63,7 +63,7 @@
         </div>
 
         <!-- 生理上的吸引 -->
-        <div v-show="current === 5">
+        <div v-show="currentPage === 5">
           <IdentityCardComponent :title="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
             :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom"
             @self-change="updatePhyAddByMod" @update-val="updatePhyAdd">
@@ -74,7 +74,7 @@
         </div>
 
         <!-- 亲密关系上的吸引 -->
-        <div v-show="current === 6">
+        <div v-show="currentPage === 6">
           <IdentityCardComponent :title="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
             :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom"
             @self-change="updateEmoAddByMod" @update-val="updateEmoAdd">
@@ -90,13 +90,13 @@
           <img src="../assets/left.svg" />
         </button>
         <div class="steps rounded-full">
-          <div class="flex justify-between backdrop-blur-xl items-center h-full rounded-full">
-            <button class="step-btn"></button>
-            <button class="step-btn"></button>
-            <button class="step-btn"></button>
-            <button class="step-btn"></button>
-            <button class="step-btn"></button>
-            <button class="step-btn"></button>
+          <div class="flex justify-between backdrop-blur-xl items-center h-full rounded-full gap-1">
+            <template v-for="(color, index) in rainbowColor">
+              <button class="step-btn transition-all duration-300" v-if="index < rainbowColor.length - 1"
+                :class="currentPage === index + 1 ? 'flex-1' : ''"
+                :style="{ 'background-image': `linear-gradient(to right, ${color}, ${currentPage === index + 1 ? rainbowColor[index + 1] : color})` }"></button>
+            </template>
+
           </div>
         </div>
         <button @click="nextPage" class="p-0 m-0 bg-transparent">
@@ -114,7 +114,7 @@ import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
 // import GenitalsVue from "../components/Genitals.vue";
 // import HormoneLevelsVue from "../components/HormoneLevels.vue";
 import IdentityCardComponent from "../components/IdentityCardComponent.vue";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { genderIdentity } from './genderGroup/GId'
 import { genderExpression } from './genderGroup/GEx'
 import { sexualIdentity } from './genderGroup/SId'
@@ -162,11 +162,13 @@ const updateEmoAdd = (index: number, val: number) =>
 const updateEmoAddByMod = (index: number, param: number) =>
   updateValByMod(index, param, emotionallyAttractedTo)
 
-const current = ref(1)
 
-const nextPage = () => current.value < 6 ? (current.value += 1) : null
+const currentPage = ref(1)
+const rainbowColor = reactive(['#ff9292', '#ffd6a7', '#fffb8f', '#c9ffaf', '#90f8ff', '#90bcff', '#9390ff'])
 
-const prevPage = () => current.value > 1 ? (current.value -= 1) : null;
+const nextPage = () => currentPage.value < 6 ? (currentPage.value += 1) : null
+
+const prevPage = () => currentPage.value > 1 ? (currentPage.value -= 1) : null;
 
 
 // 使用 ref 创建一个引用，以指向我们想要捕获的 DOM 元素
@@ -225,17 +227,50 @@ const captureTarget = ref(null);
 .steps {
   width: 12rem;
   height: 2rem;
-  box-shadow: -5.2px -5.2px 9.2px 0 rgba(255, 255, 255, 0.6);
-  border: solid 2.4px rgba(255, 255, 255, 0.3);
-  background-image: linear-gradient(to right, #f00 0%, #f90 20%, #fff500 41%, #00ff29 61%, #0038ff 81%, #8f00ff 101%);
+
+
+  // background-image: linear-gradient(to right, #f00 0%, #f90 20%, #fff500 41%, #00ff29 61%, #0038ff 81%, #8f00ff 101%);
 }
 
 .step-btn {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  border: solid 2px #f2f2f2;
   border-radius: 1rem;
   padding: 0;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
+  box-shadow: 4px 4px 8px 0 rgba(210, 219, 235, 0.6);
+}
+
+.red-2-orange-bg {
+  background: #ff9292;
+  background-image: linear-gradient(to right, #ff9292, #ffd6a7);
+}
+
+
+.orange-2-yellow-bg {
+  background: #ffd6a7;
+  background-image: linear-gradient(to right, #ffd6a7, #fffb8f);
+}
+
+.yellow-2-green-bg {
+  background: #fffb8f;
+  background-image: linear-gradient(to right, #fffb8f, #c9ffaf);
+}
+
+.green-2-zeal-bg {
+  background: #c9ffaf;
+  background-image: linear-gradient(to right, #c9ffaf, #90f8ff);
+}
+
+.zeal-2-blue-bg {
+  background: #c9ffaf;
+  background-image: linear-gradient(to right, #90f8ff, #90bcff);
+}
+
+.blue-2-purple-bg {
+  background: #c9ffaf;
+  background-image: linear-gradient(to right, #90bcff, #9390ff);
 }
 </style>
