@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="wrapper rounded-2xl ">
     <h1 class="text-4xl main-title"> 生理特征</h1>
-    <div class="flex justify-center flex-col">
+    <div class="flex justify-center flex-col p-4">
       <div class="flex justify-between subtitle">
         <p>阴道</p>
         <p>未分化</p>
@@ -12,7 +12,7 @@
       </div>
       <img src="../assets/gender.svg" alt="" class="mb-3">
     </div>
-    <div>
+    <div class="p-4">
       <div v-for="(hormone, index) in hormones" class="flex mb-3">
         <div>
           <img :src="hormone.pic" :alt="hormone.name" srcset="">
@@ -29,6 +29,10 @@
         </div>
       </div>
     </div>
+
+    <div class="pl-4 pb-4">
+      <SexChromosomes></SexChromosomes>
+    </div>
   </div>
 </template>
 
@@ -36,6 +40,7 @@
 import progesterone from '../assets/progesterone.svg';
 import androgens from '../assets/androgens.svg'
 import estrogen from '../assets/estrogen.svg'
+import SexChromosomes from './SexChromosomes.vue';
 import { reactive } from 'vue';
 
 const emit = defineEmits<{
@@ -85,6 +90,11 @@ const hex2RGB = (hex: string) => {
 </script>
 
 <style scoped>
+.wrapper {
+  background: linear-gradient(123.84deg, rgba(229, 229, 229, 0.2) 0.32%, rgba(205, 213, 224, 0.2) 32.08%, rgba(205, 213, 224, 0.2) 60.87%, rgba(255, 255, 255, 0.2) 95.61%),
+    linear-gradient(160.61deg, rgba(255, 255, 255, 0.48) 13.02%, rgba(255, 255, 255, 0.4) 55.88%, rgba(255, 255, 255, 0) 99.64%);
+}
+
 input::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 16px;

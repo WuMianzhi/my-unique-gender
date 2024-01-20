@@ -115,7 +115,7 @@ input[type="range"]::-webkit-slider-thumb {
   color: #BCBCBC;
 }
 
-.main-title{
+.main-title {
   height: 26px;
   -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.5);
   font-family: Dosis;
@@ -148,4 +148,11 @@ input[type="range"]::-webkit-slider-thumb {
 .rainbow-bg {
   background: linear-gradient(to right, rgba(255, 0, 0, 0.3) 0%, rgba(255, 153, 0, 0.3) 20.31%, rgba(255, 245, 0, 0.3) 41.15%, rgba(0, 255, 41, 0.3) 60.94%, rgba(0, 56, 255, 0.3) 80.73%, rgba(143, 0, 255, 0.3) 100%),
     linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+
+.card-wrapper {
+  .wrapper {
+    background: linear-gradient(123.84deg, rgba(229, 229, 229, 0.2) 0.32%, rgba(205, 213, 224, 0.2) 32.08%, rgba(205, 213, 224, 0.2) 60.87%, rgba(255, 255, 255, 0.2) 95.61%),
+      linear-gradient(160.61deg, rgba(255, 255, 255, 0.48) 13.02%, rgba(255, 255, 255, 0.4) 55.88%, rgba(255, 255, 255, 0) 99.64%);
+  }
 }

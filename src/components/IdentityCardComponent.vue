@@ -1,5 +1,5 @@
 <template>
-  <div class="identify-card m-4 card grid w-80 bg-white p-6  
+  <div class="identify-card m-4 card grid flex-1 bg-white p-6  
             md:bg-white md:p-12 md:rounded-lg md:shadow-lg
               lg:bg-slate-50 lg:p-6 lg:shadow-lg">
     <h2 class="text-2xl z-10 md:text-center md:text-4xl lg:text-3xl lg:text-left">

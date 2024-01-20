@@ -1,11 +1,11 @@
 <template>
-  <div class=" rounded-xl p-0 md:p-24">
+  <div>
     <!-- <h1 class="text-left font-bold text-6xl pb-8 pt-12 rainbow-text md:text-center">
       飞起来的 <br> 性别独角兽
     </h1> -->
 
     <div
-      class="grid items-stretch sm:gap-x-32 sm:gap-y-16 sm:divide-y-0 md:gap-x-32 md:gap-y-32 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-4">
+      class="grid items-stretch ">
       <div class="lg:row-span-3 relative" ref="captureTarget">
 
         <div class="svg-container absolute"> </div>
@@ -19,16 +19,13 @@
 
       </div>
 
-      <div class="px-6">
+      <div class=" card-wrapper">
         <!-- 性别认同 / 性别身份 -->
         <div v-show="currentPage === 1">
           <IdentityCardComponent :title="genderIdentity.title" :category="genderIdentity.category"
             :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" @selfChange="updateGIdByMod"
             @update-val="updateGId" />
         </div>
-
-        <!-- 外生殖器形态 -->
-        <!-- <GenitalsVue /> -->
 
         <!-- 性别表达气质 -->
         <div v-show="currentPage === 2">
@@ -45,14 +42,7 @@
         <div v-show="currentPage === 3">
           <PhysioChar></PhysioChar>
         </div>
-
-        <!-- 性激素水平 -->
-        <!-- <HormoneLevelsVue /> -->
-
-
-        <!-- 性染色体 -->
-        <!-- <ChromosomesVue /> -->
-
+                   
         <!-- 性 / 情欲倾向的认同 / 身份 -->
         <div v-show="currentPage === 4">
           <IdentityCardComponent :title="sexualIdentity.title" :category="sexualIdentity.category"
