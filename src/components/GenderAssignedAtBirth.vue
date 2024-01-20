@@ -44,9 +44,6 @@ watch(() => genderAssign[1].checked, () => {
 </script>
 
 <style lang="scss" scoped>
-.label {
-  // color: #222222;
-}
 
 .gender-icon {
   width: 2rem;

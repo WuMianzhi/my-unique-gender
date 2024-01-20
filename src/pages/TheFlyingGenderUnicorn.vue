@@ -76,8 +76,8 @@
       </div>
 
       <div class="flex justify-between items-center  ">
-        <button @click="prevPage" class="p-0 m-0 bg-transparent">
-          <img src="../assets/left.svg" />
+        <button @click="prevPage" class="p-4 m-4  click-btn rounded-full bg-transparent">
+          <img src="../assets/svg/left.svg" />
         </button>
         <div class="steps rounded-full">
           <div class="flex justify-between backdrop-blur-xl items-center h-full rounded-full gap-1">
@@ -89,8 +89,8 @@
 
           </div>
         </div>
-        <button @click="nextPage" class="p-0 m-0 bg-transparent">
-          <img src="../assets/right.svg" />
+        <button @click="nextPage" class="p-4 m-4 rounded-full click-btn bg-transparent">
+          <img src="../assets/svg/right.svg" />
         </button>
       </div>
     </div>

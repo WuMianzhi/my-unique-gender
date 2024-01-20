@@ -14,9 +14,9 @@
         <div class="w-full py-2">
           <div class="w-full flex items-center gap-2 ">
             <!-- 减少一级 -->
-            <button class="linear-bg-btn flex m-0 p-0" @click="modValByParam(index, -5)">
-              <span class="relative btn-inner">-</span>
-            </button>
+            <a class="linear-bg-btn click-btn flex m-0 p-0" @click="modValByParam(index, -5)">
+                <img src="../assets/svg/minus.svg" alt="" srcset="">
+            </a>
             <!-- 中间的按钮 -->
             <div class="flex-1 flex justify-between ">
               <template v-for="i in 20" :key="i">
@@ -26,9 +26,9 @@
               </template>
             </div>
             <!--  添加一级 -->
-            <button class="linear-bg-btn m-0 p-0 " @click="modValByParam(index, 5)">
-              <span class="relative btn-inner">+</span>
-            </button>
+            <a class="linear-bg-btn click-btn m-0 p-0 " @click="modValByParam(index, 5)">
+              <img src="../assets/svg/plus.svg" alt="" srcset="">
+            </a>
           </div>
 
           <div v-if="identity.name == 'customer'" class="p-0 m-0 h-4 flex items-center justify-around align-baseline bg-transparent rounded">
@@ -112,12 +112,6 @@ const hex2RGB = (hex: string) => {
 .identify-card {
   // background: linear-gradient(123.84deg, rgba(229, 229, 229, 0.2) 0.32%, rgba(205, 213, 224, 0.2) 32.08%, rgba(205, 213, 224, 0.2) 60.87%, rgba(255, 255, 255, 0.2) 95.61%),
   //   linear-gradient(160.61deg, rgba(255, 255, 255, 0.48) 13.02%, rgba(255, 255, 255, 0.4) 55.88%, rgba(255, 255, 255, 0) 99.64%);
-
-  &-body {
-    // @apply grid gap-1 items-center;
-    // grid-template-columns: max-content 1fr;
-  }
-
   &__label {
     height: 16px;
     font-family: Dosis;
