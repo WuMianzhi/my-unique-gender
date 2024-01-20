@@ -65,12 +65,14 @@ const choice2 = ref(2);
   width: 2rem;
   height: 2rem;
   line-height: 2rem;
+  font-weight: bolder;
   font-size: 12px;
   color: #BCBCBC;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
 }
 
 .selected-chrome {
-  color: #afafaf;
+  color: #4b4b4b;
   box-shadow: -9px -9px 16px 0px #FFFFFF99;
   box-shadow: 9px 9px 16px 0px #C2D3ED99;
 }
