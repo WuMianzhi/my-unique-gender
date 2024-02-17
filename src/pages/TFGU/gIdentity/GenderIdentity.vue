@@ -9,7 +9,6 @@
 <script setup lang="ts">
 import IdentityCardComponent from "../../../components/IdentityCardComponent.vue";
 import { genderIdentity } from './GId'
-import { GenderGroup } from "@/types/index";
 import { updateVal, updateValByMod } from '../../../utils/updateVal';
 
 const updateGId = (index: number, val: number) =>
