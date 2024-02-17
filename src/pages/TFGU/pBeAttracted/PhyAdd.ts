@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { GenderGroup } from "../../types/index";
+import { GenderGroup } from "../../../types/index";
 
 export const physicallyAttractedTo: GenderGroup = reactive({
   title: "生理上被怎样的人吸引",

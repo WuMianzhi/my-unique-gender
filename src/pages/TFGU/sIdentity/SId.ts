@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { GenderGroup } from "../../types/index";
+import { GenderGroup } from "../../../types/index";
 
 export const sexualIdentity: GenderGroup = reactive({
   title: "性/情欲倾向的认同/身份",

@@ -4,9 +4,10 @@
       飞起来的 <br> 性别独角兽
     </h1> -->
 
-    <div
-      class="grid items-stretch ">
-      <div class="lg:row-span-3 relative" ref="captureTarget">
+    <!-- {{ $t('message.hello') }} -->
+
+    <div class="flex flex-col justify-between items-stretch pages">
+      <div class="lg:row-span-3 relative flex-1" ref="captureTarget">
 
         <div class="svg-container absolute"> </div>
 
@@ -19,59 +20,34 @@
 
       </div>
 
-      <div class=" card-wrapper">
+      <div class="card-wrapper">
         <!-- 性别认同 / 性别身份 -->
         <div v-show="currentPage === 1">
-          <IdentityCardComponent :title="genderIdentity.title" :category="genderIdentity.category"
-            :mainColor="genderIdentity.mainColor" :has-custom="genderIdentity.hasCustom" @selfChange="updateGIdByMod"
-            @update-val="updateGId" />
+          <GenderIdentityVue />
         </div>
 
         <!-- 性别表达气质 -->
         <div v-show="currentPage === 2">
-          <IdentityCardComponent :title="genderExpression.title" :category="genderExpression.category"
-            :mainColor="genderExpression.mainColor" :has-custom="genderExpression.hasCustom" @selfChange="updateGexByMod"
-            @update-val="updateGex">
-            <template #afterSlot>
-              <!-- 出生指派性别 -->
-              <GenderAssignedAtBirthVue />
-            </template>
-          </IdentityCardComponent>
+          <GenderExpressionVue />
         </div>
 
         <div v-show="currentPage === 3">
-          <PhysioChar></PhysioChar>
+          <PhysioCharVue />
         </div>
-                   
+
         <!-- 性 / 情欲倾向的认同 / 身份 -->
         <div v-show="currentPage === 4">
-          <IdentityCardComponent :title="sexualIdentity.title" :category="sexualIdentity.category"
-            :mainColor="sexualIdentity.mainColor" :has-custom="sexualIdentity.hasCustom" @self-change="updateSIdByMod"
-            @update-val="updateSId">
-
-          </IdentityCardComponent>
+          <sexualIdentityVue />
         </div>
 
         <!-- 生理上的吸引 -->
         <div v-show="currentPage === 5">
-          <IdentityCardComponent :title="physicallyAttractedTo.title" :category="physicallyAttractedTo.category"
-            :mainColor="physicallyAttractedTo.mainColor" :has-custom="physicallyAttractedTo.hasCustom"
-            @self-change="updatePhyAddByMod" @update-val="updatePhyAdd">
-            <template #before-slot>
-              <IsAttractiveCom></IsAttractiveCom>
-            </template>
-          </IdentityCardComponent>
+          <phyBeAttractedVue />
         </div>
 
         <!-- 亲密关系上的吸引 -->
         <div v-show="currentPage === 6">
-          <IdentityCardComponent :title="emotionallyAttractedTo.title" :category="emotionallyAttractedTo.category"
-            :mainColor="emotionallyAttractedTo.mainColor" :has-custom="emotionallyAttractedTo.hasCustom"
-            @self-change="updateEmoAddByMod" @update-val="updateEmoAdd">
-            <template #before-slot>
-              <IsAttractiveCom></IsAttractiveCom>
-            </template>
-          </IdentityCardComponent>
+          <emoBeAttractedVue />
         </div>
       </div>
 
@@ -98,60 +74,14 @@
 </template>
 
 <script setup lang="ts">
-// import html2canvas from "html2canvas";
-// import ChromosomesVue from "../components/Chromosomes.vue";
-import GenderAssignedAtBirthVue from "../components/GenderAssignedAtBirth.vue";
-// import GenitalsVue from "../components/Genitals.vue";
-// import HormoneLevelsVue from "../components/HormoneLevels.vue";
-import IdentityCardComponent from "../components/IdentityCardComponent.vue";
 import { reactive, ref } from "vue";
-import { genderIdentity } from './genderGroup/GId'
-import { genderExpression } from './genderGroup/GEx'
-import { sexualIdentity } from './genderGroup/SId'
-import { GenderGroup } from "../types/index";
-import { physicallyAttractedTo } from './genderGroup/PhyAdd'
-import { emotionallyAttractedTo } from './genderGroup/EmoAdd'
-import PhysioChar from "../components/PhysioChar.vue";
-import IsAttractiveCom from "../components/IsAttractiveCom.vue";
 
-const updateVal = (index: number, val: number, ds: GenderGroup) =>
-  ds.category[index].value = val
-
-const updateValByMod = (index: number, mod: number, ds: GenderGroup) => {
-  const res = ds.category[index].value + mod;
-  (res < 101 && res > 0) ? ds.category[index].value += mod : null
-}
-
-const updateGex = (index: number, val: number) =>
-  updateVal(index, val, genderExpression)
-
-const updateGexByMod = (index: number, val: number) =>
-  updateValByMod(index, val, genderExpression)
-
-const updateGId = (index: number, val: number) =>
-  updateVal(index, val, genderIdentity)
-
-const updateGIdByMod = (index: number, param: number) =>
-  updateValByMod(index, param, genderIdentity)
-
-const updateSId = (index: number, val: number) =>
-  updateVal(index, val, sexualIdentity)
-
-const updateSIdByMod = (index: number, param: number) =>
-  updateValByMod(index, param, sexualIdentity)
-
-const updatePhyAdd = (index: number, val: number) =>
-  updateVal(index, val, physicallyAttractedTo)
-
-const updatePhyAddByMod = (index: number, param: number) =>
-  updateValByMod(index, param, physicallyAttractedTo)
-
-const updateEmoAdd = (index: number, val: number) =>
-  updateVal(index, val, emotionallyAttractedTo)
-
-const updateEmoAddByMod = (index: number, param: number) =>
-  updateValByMod(index, param, emotionallyAttractedTo)
-
+import GenderIdentityVue from './TFGU/gIdentity/GenderIdentity.vue';
+import GenderExpressionVue from './TFGU/gExpression/GenderExpression.vue';
+import PhysioCharVue from "./TFGU/pCharactor/PhysioChar.vue";
+import sexualIdentityVue from "./TFGU/sIdentity/SexualIdentity.vue";
+import phyBeAttractedVue from "./TFGU/pBeAttracted/PhyBeAttracted.vue";
+import emoBeAttractedVue from "./TFGU/eBeAttracted/EmoBeAttracted.vue";
 
 const currentPage = ref(1)
 const rainbowColor = reactive(['#ff9292', '#ffd6a7', '#fffb8f', '#c9ffaf', '#90f8ff', '#90bcff', '#9390ff'])
@@ -233,34 +163,8 @@ const captureTarget = ref(null);
   box-shadow: 4px 4px 8px 0 rgba(210, 219, 235, 0.6);
 }
 
-.red-2-orange-bg {
-  background: #ff9292;
-  background-image: linear-gradient(to right, #ff9292, #ffd6a7);
-}
-
-
-.orange-2-yellow-bg {
-  background: #ffd6a7;
-  background-image: linear-gradient(to right, #ffd6a7, #fffb8f);
-}
-
-.yellow-2-green-bg {
-  background: #fffb8f;
-  background-image: linear-gradient(to right, #fffb8f, #c9ffaf);
-}
-
-.green-2-zeal-bg {
-  background: #c9ffaf;
-  background-image: linear-gradient(to right, #c9ffaf, #90f8ff);
-}
-
-.zeal-2-blue-bg {
-  background: #c9ffaf;
-  background-image: linear-gradient(to right, #90f8ff, #90bcff);
-}
-
-.blue-2-purple-bg {
-  background: #c9ffaf;
-  background-image: linear-gradient(to right, #90bcff, #9390ff);
+.pages{
+  height: 100vh;
+  position: relative;
 }
 </style>
