@@ -6,13 +6,11 @@
 
     <!-- {{ $t('message.hello') }} -->
 
-    <div class="flex flex-col justify-between items-stretch pages">
+    <div class="flex flex-col justify-between items-stretch pages ">
       <div class="lg:row-span-3 relative flex-1" ref="captureTarget">
-
-        <div class="svg-container absolute"> </div>
-
-        <div class="blur-background flex items-center justify-center w-64 h-64">
-          <img src="../assets/unicorn.svg" alt="unicorn" srcset="" class="p-8">
+        <div class="svg-container absolute z-0"> </div>
+        <div class="blur-background flex items-center justify-center">
+          <img src="../assets/unicorn.svg" alt="unicorn" class="p-4 w-48 h-48 object-contain">
         </div>
 
         <!-- 捕获并下载的按钮 -->
@@ -20,33 +18,33 @@
 
       </div>
 
-      <div class="card-wrapper">
+      <div class="card-wrapper overflow-auto px-4 z-10 ">
         <!-- 性别认同 / 性别身份 -->
-        <div v-show="currentPage === 1">
+        <div v-show="currentPage === 1" class="scale-90">
           <GenderIdentityVue />
         </div>
 
         <!-- 性别表达气质 -->
-        <div v-show="currentPage === 2">
+        <div v-show="currentPage === 2" class="scale-90">
           <GenderExpressionVue />
         </div>
 
-        <div v-show="currentPage === 3">
+        <div v-show="currentPage === 3" class="scale-90">
           <PhysioCharVue />
         </div>
 
         <!-- 性 / 情欲倾向的认同 / 身份 -->
-        <div v-show="currentPage === 4">
+        <div v-show="currentPage === 4" class="scale-90">
           <sexualIdentityVue />
         </div>
 
         <!-- 生理上的吸引 -->
-        <div v-show="currentPage === 5">
+        <div v-show="currentPage === 5" class="scale-90">
           <phyBeAttractedVue />
         </div>
 
         <!-- 亲密关系上的吸引 -->
-        <div v-show="currentPage === 6">
+        <div v-show="currentPage === 6" class="scale-90">
           <emoBeAttractedVue />
         </div>
       </div>
@@ -131,7 +129,7 @@ const captureTarget = ref(null);
   top: 50%;
   left: 50%;
   width: 248px;
-  height: 248px;
+  height: 180px;
   border-radius: 50%;
   background-image: conic-gradient(from 180deg at 50% 50%, #FFCA55 -24.22deg, #FF685D 19.49deg, #FF64F0 60.23deg, #5155FF 137.93deg, #54EDFF 212.82deg, #5BFF7B 256.57deg, #FDFF59 294.74deg, #FFCA55 335.78deg, #FF685D 379.49deg);
   transform: translate(-50%, -50%);
@@ -165,6 +163,7 @@ const captureTarget = ref(null);
 
 .pages{
   height: 100vh;
+  width: 100vw;
   position: relative;
 }
 </style>
