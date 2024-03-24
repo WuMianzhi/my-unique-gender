@@ -3,7 +3,7 @@ import { GenderGroup } from "../../../types/index";
 import { setupI18n } from "../../../locales/setupI18n";
 
 export const sexualIdentity: GenderGroup = reactive({
-  title: setupI18n.global.t("sexualIdentity.identity"),
+  title: setupI18n.global.t("sexualIdentity.title"),
   category: [
     {
       name: setupI18n.global.t("sexualIdentity.queer"),

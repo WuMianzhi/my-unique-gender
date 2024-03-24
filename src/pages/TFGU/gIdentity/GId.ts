@@ -3,25 +3,25 @@ import { GenderGroup } from "@/types/index";
 import { setupI18n } from "../../../locales/setupI18n";
 
 export const genderIdentity: GenderGroup = reactive({
-  title: setupI18n.global.t('message.hello'),
+  title: setupI18n.global.t("genderIdentity.title"),
   category: [
     {
-      name: "非二元性别",
+      name: setupI18n.global.t("genderIdentity.nonBinary"),
       colorSeries: ["ff9292", "ffd6a7"],
       value: 50,
     },
     {
-      name: "跨性别",
+      name: setupI18n.global.t("genderIdentity.transGender"),
       colorSeries: ["ffd6a7", "fffb8f"],
       value: 50,
     },
     {
-      name: "女性",
+      name: setupI18n.global.t("genderIdentity.female"),
       colorSeries: ["fffb8f", "c9ffaf"],
       value: 50,
     },
     {
-      name: "男性",
+      name: setupI18n.global.t("genderIdentity.male"),
       colorSeries: ["c9ffaf", "90f8ff"],
       value: 50,
     },
