@@ -2,8 +2,12 @@ import { createI18n } from "vue-i18n";
 
 const messages = {
   en: {
-    message: {
-      hello: "hello world",
+    // source: https://transstudent.org/gender/
+    genderExpression: {
+      title: "Gender Expression",
+      neutral: "nuetral/undefined",
+      feminine: "feminine",
+      masculine: "masculine",
     },
     genderIdentity: {
       title: "Gender Identity",
@@ -22,8 +26,12 @@ const messages = {
     },
   },
   ja: {
-    message: {
-      hello: "こんにちは、世界",
+    // source: https://transstudent.org/gender/
+    genderExpression: {
+      title: "見た目が表すジェンダー",
+      neutral: "中性的/限定されていない",
+      feminine: "女性らしい",
+      masculine: "男性らしい",
     },
     sexualIdentity: {
       title: "性的アイデンティティ", //not sure
@@ -34,7 +42,7 @@ const messages = {
       asexual: "アセクシュアル/無性愛",
     },
     genderIdentity: {
-      title: "性自認/ジェンダー・アイデンティティー",
+      title: "自分が考えるジェンダー",
       nonBinary: "Xジェンダー",
       transGender: "トランスジェンダー",
       female: "女性",
@@ -42,8 +50,11 @@ const messages = {
     },
   },
   "zh-CN": {
-    message: {
-      hello: "你好",
+    genderExpression: {
+      title: "性别表达/性别气质",
+      neutral: "中性/不被定义的",
+      feminine: "阴柔/女性化",
+      masculine: "阳刚/男性化",
     },
     sexualIdentity: {
       title: "性/情欲倾向的认同/身份",
