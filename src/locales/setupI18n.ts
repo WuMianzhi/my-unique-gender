@@ -18,11 +18,11 @@ const messages = {
       male: "Male",
     },
     sexualIdentity: {
-      title: "Sexual Identity",
+      title: "Sexual or Romantic Identity",
       queer: "Queer",
-      pansexual: "Pansexual",
-      homosexual: "Homosexual",
-      heterosexual: "Heterosexual",
+      pansexual: "Pansexual / Bisexual",
+      homosexual: "Lesbian / Gay",
+      heterosexual: "Straight",
       asexual: "Asexual",
     },
     genderedBiology: {
@@ -41,6 +41,20 @@ const messages = {
       intersex: "Other / Intersex",
       male: "Male",
     },
+    attracted: {
+      phyTitle: "Physically Attracted To",
+      emoTitle: "Emotionally Attracted To",
+      plus: "Yay",
+      minus: "Nay",
+      nonBinary: "Non-binary",
+      transF: "Transgender Female",
+      transM: "Transgender Male",
+      cisF: "Cisgender Female",
+      cisM: "Cisgender Male",
+    },
+    customize: {
+      placeholder: "(Write Your Own!)",
+    },
   },
   ja: {
     // source: https://transstudent.org/gender/
@@ -51,7 +65,7 @@ const messages = {
       masculine: "男性らしい",
     },
     sexualIdentity: {
-      title: "性的アイデンティティ", //not sure
+      title: "性または恋愛的アイデンティティ",
       queer: "クィア",
       pansexual: "パンセクシュアル / 全性愛",
       homosexual: "ホモセクシュアル / 同性愛",
@@ -81,6 +95,20 @@ const messages = {
       intersex: "その他 / 間性",
       male: "男性",
     },
+    attracted: {
+      phyTitle: "身体的に惹きつけられる対象",
+      emoTitle: "感情的に惹きつけられる対象",
+      plus: "プラス",
+      minus: "マイナス",
+      nonBinary: "Xジェンダー",
+      transF: "トランスジェンダーの女性",
+      transM: "トランスジェンダーの男性",
+      cisF: "シスジェンダーの女性",
+      cisM: "シスジェンダーの男性",
+    },
+    customize: {
+      placeholder: "（カスタマイズ！）",
+    },
   },
   "zh-CN": {
     genderExpression: {
@@ -92,7 +120,7 @@ const messages = {
     sexualIdentity: {
       title: "性 / 情欲倾向的认同 / 身份",
       queer: "酷儿",
-      pansexual: "泛性恋",
+      pansexual: "泛性恋 / 双性恋",
       homosexual: "同性恋",
       heterosexual: "异性恋",
       asexual: "无性恋",
@@ -119,6 +147,20 @@ const messages = {
       female: "女性",
       intersex: "其它 / 间性",
       male: "男性",
+    },
+    attracted: {
+      phyTitle: "生理上受怎样的人吸引",
+      emoTitle: "亲密关系上受怎样的人吸引",
+      plus: "被吸引",
+      minus: "不被吸引",
+      nonBinary: "非二元性别者",
+      transF: "跨性别女性",
+      transM: "跨性别男性",
+      cisF: "顺性别女性",
+      cisM: "顺性别男性",
+    },
+    customize: {
+      placeholder: "（自定义！）",
     },
   },
 };
