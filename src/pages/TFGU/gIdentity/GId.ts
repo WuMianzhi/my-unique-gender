@@ -1,8 +1,9 @@
 import { reactive } from "vue";
 import { GenderGroup } from "@/types/index";
+import { setupI18n } from "../../../locales/setupI18n";
 
 export const genderIdentity: GenderGroup = reactive({
-  title: "性别认同/性别身份",
+  title: setupI18n.global.t('message.hello'),
   category: [
     {
       name: "非二元性别",
